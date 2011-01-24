@@ -22,6 +22,8 @@ gem 'rails', '3.0.3'
 
 gem 'omniauth'
 gem "compass", "~> 0.10.6"
+gem "friendly_id", "~> 3.2"
+
 gem "autotest"
 
 # Bundle gems for the local environment. Make sure to
