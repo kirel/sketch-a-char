@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124171441) do
+ActiveRecord::Schema.define(:version => 20110124172716) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(:version => 20110124171441) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cached_slug"
   end
+
+  add_index "users", ["cached_slug"], :name => "index_users_on_cached_slug", :unique => true
 
 end
