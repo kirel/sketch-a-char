@@ -2,6 +2,8 @@ DetexifyRails::Application.routes.draw do
   resources :syms do
     resources :samples
   end
+  
+  match '/auth/:provider/callback', :to => 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
