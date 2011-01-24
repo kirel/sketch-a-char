@@ -15,8 +15,12 @@ class ApplicationController < ActionController::Base
   def signed_in?
     !!current_user
   end
+  
+  def admin?
+    signed_in? && current_user.admin?
+  end
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :admin?
 
   def login!(user)
     @current_user = user.tap { session[:user_id] = user.id }
@@ -28,5 +32,13 @@ class ApplicationController < ActionController::Base
   
   def require_current_user
     redirect_to login_path unless signed_in?
+  end
+  
+  def require_admin
+    permission_denied unless admin?
+  end
+  
+  def permission_denied
+    render :file => "public/401.html", :status => :unauthorized
   end
 end

@@ -2,8 +2,7 @@ class SamplesController < ApplicationController
   before_filter :find_sym
   before_filter :require_current_user, :only => [:new, :create, :edit, :update, :destroy]
   
-  # GET /samples
-  # GET /samples.xml
+  # possible for everyone
   def index
     @samples = @sym.samples.all
 
@@ -13,8 +12,7 @@ class SamplesController < ApplicationController
     end
   end
 
-  # GET /samples/1
-  # GET /samples/1.xml
+  # TODO don't really need that?!
   def show
     @sample = @sym.samples.find(params[:id])
 
@@ -24,8 +22,7 @@ class SamplesController < ApplicationController
     end
   end
 
-  # GET /samples/new
-  # GET /samples/new.xml
+  # Not necessary
   def new
     @sample = @sym.samples.build
 
