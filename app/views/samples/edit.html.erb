@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @sample %> |
-<%= link_to 'Back', samples_path %>
+<%= link_to 'Show', [@sym, @sample] %> |
+<%= link_to 'Back', sym_samples_path(@sym) %>

@@ -1,9 +1,10 @@
 <h1>Listing samples</h1>
 
+<h2><%= @sym.name %></h2>
+
 <table>
   <tr>
     <th>Data</th>
-    <th>Sym</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,14 +13,13 @@
 <% @samples.each do |sample| %>
   <tr>
     <td><%= sample.data %></td>
-    <td><%= sample.sym %></td>
-    <td><%= link_to 'Show', sample %></td>
-    <td><%= link_to 'Edit', edit_sample_path(sample) %></td>
-    <td><%= link_to 'Destroy', sample, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [@sym, sample] %></td>
+    <td><%= link_to 'Edit', [:edit, @sym, sample] %></td>
+    <td><%= link_to 'Destroy', [@sym, sample], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Sample', new_sample_path %>
+<%= link_to 'New Sample', new_sym_sample_path(@sym) %>

@@ -1,8 +1,10 @@
 class SamplesController < ApplicationController
+  before_filter :find_sym
+  
   # GET /samples
   # GET /samples.xml
   def index
-    @samples = Sample.all
+    @samples = @sym.samples.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class SamplesController < ApplicationController
   # GET /samples/1
   # GET /samples/1.xml
   def show
-    @sample = Sample.find(params[:id])
+    @sample = @sym.samples.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class SamplesController < ApplicationController
   # GET /samples/new
   # GET /samples/new.xml
   def new
-    @sample = Sample.new
+    @sample = @sym.samples.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class SamplesController < ApplicationController
 
   # GET /samples/1/edit
   def edit
-    @sample = Sample.find(params[:id])
+    @sample = @sym.samples.find(params[:id])
   end
 
   # POST /samples
   # POST /samples.xml
   def create
-    @sample = Sample.new(params[:sample])
+    @sample = @sym.samples.build(params[:sample])
 
     respond_to do |format|
       if @sample.save
@@ -56,7 +58,7 @@ class SamplesController < ApplicationController
   # PUT /samples/1
   # PUT /samples/1.xml
   def update
-    @sample = Sample.find(params[:id])
+    @sample = @sym.samples.find(params[:id])
 
     respond_to do |format|
       if @sample.update_attributes(params[:sample])
@@ -72,12 +74,18 @@ class SamplesController < ApplicationController
   # DELETE /samples/1
   # DELETE /samples/1.xml
   def destroy
-    @sample = Sample.find(params[:id])
+    @sample = @sym.samples.find(params[:id])
     @sample.destroy
 
     respond_to do |format|
       format.html { redirect_to(samples_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  
+  def find_sym
+    @sym = Sym.find(params[:sym_id])
   end
 end

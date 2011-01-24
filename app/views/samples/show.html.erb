@@ -5,11 +5,5 @@
   <%= @sample.data %>
 </p>
 
-<p>
-  <b>Sym:</b>
-  <%= @sample.sym %>
-</p>
-
-
-<%= link_to 'Edit', edit_sample_path(@sample) %> |
-<%= link_to 'Back', samples_path %>
+<%= link_to 'Edit', edit_sym_sample_path(@sym, @sample) %> |
+<%= link_to 'Back', sym_samples_path(@sym) %>
