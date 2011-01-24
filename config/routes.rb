@@ -1,6 +1,11 @@
 DetexifyRails::Application.routes.draw do
   resources :syms do
-    resources :samples
+    resources :samples, only: [:index, :create, :destroy] do
+      member do
+        post :vote_up
+        post :vote_down
+      end
+    end
   end
   
   match '/auth/:provider/callback', to: 'sessions#create'

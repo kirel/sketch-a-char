@@ -8,7 +8,7 @@
 </head>
 <body>
   
-  <% if signed_in? %><small>Signed in as <%= current_user.name %></small><% end %>
+  <% if signed_in? %><small>Signed in as <%= current_user.name %></small><% else %><small><%= link_to 'Login', login_pathg %></small><% end %>
 
   <%= yield %>
 

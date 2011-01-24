@@ -20,6 +20,8 @@ gem 'rails', '3.0.3'
 # gem 'nokogiri'
 # gem 'aws-s3', :require => 'aws/s3'
 
+gem 'jquery-rails', '>= 0.2.6'
+
 gem 'omniauth'
 gem "friendly_id", "~> 3.2"
 gem 'thumbs_up'

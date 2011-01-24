@@ -1,83 +1,51 @@
 class SymsController < ApplicationController
-  # GET /syms
-  # GET /syms.xml
+  before_filter :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  
   def index
     @syms = Sym.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @syms }
+      format.json { render :json => @syms } # TODO part of the public api
     end
   end
 
-  # GET /syms/1
-  # GET /syms/1.xml
   def show
     @sym = Sym.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @sym }
-    end
   end
 
-  # GET /syms/new
-  # GET /syms/new.xml
   def new
     @sym = Sym.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @sym }
-    end
   end
 
-  # GET /syms/1/edit
   def edit
     @sym = Sym.find(params[:id])
   end
 
-  # POST /syms
-  # POST /syms.xml
   def create
     @sym = Sym.new(params[:sym])
 
-    respond_to do |format|
-      if @sym.save
-        format.html { redirect_to(@sym, :notice => 'Sym was successfully created.') }
-        format.xml  { render :xml => @sym, :status => :created, :location => @sym }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @sym.errors, :status => :unprocessable_entity }
-      end
+    if @sym.save
+      redirect_to(@sym, :notice => 'Sym was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
-  # PUT /syms/1
-  # PUT /syms/1.xml
   def update
     @sym = Sym.find(params[:id])
 
-    respond_to do |format|
-      if @sym.update_attributes(params[:sym])
-        format.html { redirect_to(@sym, :notice => 'Sym was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @sym.errors, :status => :unprocessable_entity }
-      end
+    if @sym.update_attributes(params[:sym])
+      redirect_to(@sym, :notice => 'Sym was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
-  # DELETE /syms/1
-  # DELETE /syms/1.xml
   def destroy
     @sym = Sym.find(params[:id])
     @sym.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(syms_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(syms_url)
   end
 end

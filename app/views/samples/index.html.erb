@@ -2,26 +2,8 @@
 
 <h2><%= @sym.name %></h2>
 
-<table>
-  <tr>
-    <th>Data</th>
-    <th>Quality</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<ul>
 <% @samples.each do |sample| %>
-  <tr>
-    <td><%= sample.data %></td>
-    <td><%= sample.plusminus %></td>
-    <td><%= link_to 'Show', [@sym, sample] %></td>
-    <td><%= link_to 'Edit', [:edit, @sym, sample] %></td>
-    <td><%= link_to 'Destroy', [@sym, sample], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <li><%= render sample %></li>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Sample', new_sym_sample_path(@sym) %>
+</ul>
