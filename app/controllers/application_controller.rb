@@ -18,7 +18,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
-  def current_user=(user)
+  def login!(user)
     @current_user = user.tap { session[:user_id] = user.id }
+  end
+  
+  def logout!
+    nil.tap { session.delete :user_id }
+  end
+  
+  def require_current_user
+    redirect_to login_path unless signed_in?
   end
 end

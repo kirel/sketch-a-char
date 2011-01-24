@@ -8,8 +8,13 @@ class SessionsController < ApplicationController
       @auth = Authorization.create_from_hash(auth, current_user)
     end
     # Log the authorizing user in.
-    self.current_user = @auth.user
+    login! @auth.user
 
     render :text => "Welcome, #{current_user.name}."
+  end
+  
+  def destroy
+    logout!
+    redirect_to root_path
   end
 end

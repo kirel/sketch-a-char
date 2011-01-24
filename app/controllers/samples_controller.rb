@@ -1,5 +1,6 @@
 class SamplesController < ApplicationController
   before_filter :find_sym
+  before_filter :require_current_user, :only => [:new, :create, :edit, :update, :destroy]
   
   # GET /samples
   # GET /samples.xml
