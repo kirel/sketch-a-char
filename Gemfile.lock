@@ -35,8 +35,6 @@ GEM
       ZenTest (>= 4.4.1)
     babosa (0.2.1)
     builder (2.1.2)
-    compass (0.10.6)
-      haml (>= 3.0.4)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -46,7 +44,6 @@ GEM
       rack (>= 1.1.0, < 2)
     friendly_id (3.2.0)
       babosa (~> 0.2.1)
-    haml (3.0.25)
     i18n (0.5.0)
     mail (2.2.14)
       activesupport (>= 2.3.6)
@@ -145,7 +142,6 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-  compass (~> 0.10.6)
   friendly_id (~> 3.2)
   mysql
   omniauth
