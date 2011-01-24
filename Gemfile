@@ -21,7 +21,7 @@ gem 'rails', '3.0.3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'omniauth'
-gem "compass", ">= 0.10.6"
+gem "compass", "~> 0.10.6"
 gem "autotest"
 
 # Bundle gems for the local environment. Make sure to
