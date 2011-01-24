@@ -24,6 +24,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'omniauth'
 gem "compass", ">= 0.10.6"
+gem "autotest"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -31,3 +32,7 @@ gem "compass", ">= 0.10.6"
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.4"
+end
