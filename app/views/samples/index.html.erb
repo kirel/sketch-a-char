@@ -5,6 +5,7 @@
 <table>
   <tr>
     <th>Data</th>
+    <th>Quality</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
 <% @samples.each do |sample| %>
   <tr>
     <td><%= sample.data %></td>
+    <td><%= sample.plusminus %></td>
     <td><%= link_to 'Show', [@sym, sample] %></td>
     <td><%= link_to 'Edit', [:edit, @sym, sample] %></td>
     <td><%= link_to 'Destroy', [@sym, sample], :confirm => 'Are you sure?', :method => :delete %></td>

@@ -5,5 +5,10 @@
   <%= @sample.data %>
 </p>
 
+<p>
+  <b>Quality:</b>
+  <%= @sample.plusminus %>
+</p>
+
 <%= link_to 'Edit', edit_sym_sample_path(@sym, @sample) %> |
 <%= link_to 'Back', sym_samples_path(@sym) %>
