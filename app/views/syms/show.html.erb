@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @sym.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @sym.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_sym_path(@sym) %> |
+<%= link_to 'Back', syms_path %>
