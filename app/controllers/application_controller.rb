@@ -9,9 +9,6 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user
-    # dev user if not in production
-    return @current_user = User.find_or_create_by_name('dev user') if Rails.env.development?
-    # normal user
     @current_user ||= User.find_by_id(session[:user_id])
   end
 

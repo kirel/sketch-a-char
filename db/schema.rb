@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124164251) do
+ActiveRecord::Schema.define(:version => 20110124171441) do
 
   create_table "authorizations", :force => true do |t|
-    t.string   "provide"
+    t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
     t.datetime "created_at"
