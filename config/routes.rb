@@ -1,5 +1,7 @@
 DetexifyRails::Application.routes.draw do
-  resources :syms
+  resources :syms do
+    resources :samples
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
