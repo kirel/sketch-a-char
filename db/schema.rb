@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124173110) do
+ActiveRecord::Schema.define(:version => 20110124181759) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -25,7 +25,11 @@ ActiveRecord::Schema.define(:version => 20110124173110) do
     t.integer  "sym_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "submitter_id"
+    t.integer  "plusminus_cache"
   end
+
+  add_index "samples", ["plusminus_cache"], :name => "index_samples_on_plusminus_cache"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
