@@ -3,7 +3,8 @@ DetexifyRails::Application.routes.draw do
     resources :samples
   end
   
-  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/login', to: 'sessions#new', as: :login
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
