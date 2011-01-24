@@ -22,6 +22,7 @@ gem 'rails', '3.0.3'
 
 gem 'omniauth'
 gem "friendly_id", "~> 3.2"
+gem 'thumbs_up'
 
 gem "autotest"
 

@@ -133,6 +133,7 @@ GEM
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
     thor (0.14.6)
+    thumbs_up (0.3.2)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
@@ -147,3 +148,4 @@ DEPENDENCIES
   omniauth
   rails (= 3.0.3)
   rspec-rails (~> 2.4)
+  thumbs_up
