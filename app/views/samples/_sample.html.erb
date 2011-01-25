@@ -1,4 +1,7 @@
-<p>Data: <%= sample.data %><p>
+<%= div_for sample do %>
+
+<div class='canvas sample-canvas' data-strokes='<%= sample.data.to_json.html_safe %>'></div>
+
 <p>Quality: <%= sample.plusminus %></p>
 
 <ul>
@@ -8,3 +11,13 @@
   <li><%= link_to 'Vote down', vote_down_sym_sample_path(@sym, sample), remote: true, method: :post %></li>
   <% end -%>
 </ul>
+
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  var container = $('.sample-canvas');
+  $(container).each(function(){
+    var json = $(this).attr('data-strokes');
+    $.canvassify(this, {width: 400, height: 400, disabled: true}).insert(JSON.parse(json));
+  });
+</script>

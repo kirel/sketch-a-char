@@ -2,7 +2,27 @@
 
 <h2><%= @sym.name %></h2>
 
-<ul>
+<div id="training-canvas" class="canvas"></div>
+<a href="#" id="train">train</a>
+<a href="#" id="clear">clear</a>
+
+<script type="text/javascript" charset="utf-8">
+  var canvas = $.canvassify('#training-canvas', {width: 400, height: 400});
+  $('#clear').click(function(){canvas.clear();return false;});
+  $('#train').click(function(){
+    $.ajax({
+      url: '<%= sym_samples_path(@sym) %>',
+      dataType: "json",
+      type: "POST",
+      processData: false,
+      contentType: "application/json",
+      data: JSON.stringify({sample:{data: canvas.strokes}})
+    });
+    canvas.clear();return false;
+  });
+</script>
+
+<ul class='samples'>
 <% @samples.each do |sample| %>
   <li><%= render sample %></li>
 <% end %>
