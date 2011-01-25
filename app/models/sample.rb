@@ -6,8 +6,10 @@ class Sample < ActiveRecord::Base
   attr_accessible :data
   serialize :data
   
+  # TODO validate data
+  
   def update_plusminus_cache
     self.plusminus_cache = self.plusminus
-    save(false)
+    save(validate: false)
   end
 end
