@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124190900) do
+ActiveRecord::Schema.define(:version => 20110125213533) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20110124190900) do
   end
 
   create_table "samples", :force => true do |t|
-    t.binary   "data"
+    t.text     "data"
     t.integer  "sym_id"
     t.datetime "created_at"
     t.datetime "updated_at"
