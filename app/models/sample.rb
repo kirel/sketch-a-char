@@ -8,6 +8,8 @@ class Sample < ActiveRecord::Base
   
   # TODO validate data
   
+  scope :best_first, order('samples.plusminus_cache DESC')
+  
   def update_plusminus_cache
     self.plusminus_cache = self.plusminus
     save(validate: false)

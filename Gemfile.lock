@@ -48,6 +48,7 @@ GEM
       rack (>= 1.1.0, < 2)
     friendly_id (3.2.0)
       babosa (~> 0.2.1)
+    haml (3.0.25)
     i18n (0.5.0)
     jquery-rails (0.2.6)
       rails (~> 3.0)
@@ -101,6 +102,7 @@ GEM
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
+    rack-offline (0.6.1)
     rack-openid (1.2.0)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
@@ -153,9 +155,11 @@ DEPENDENCIES
   autotest
   factory_girl_rails
   friendly_id (~> 3.2)
+  haml
   jquery-rails (>= 0.2.6)
   mysql
   omniauth
+  rack-offline
   rails (= 3.0.3)
   rspec-rails (~> 2.4)
   syntax

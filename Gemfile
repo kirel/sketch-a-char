@@ -25,8 +25,11 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'omniauth'
 gem "friendly_id", "~> 3.2"
 gem 'thumbs_up'
+gem 'haml'
 
 gem "autotest"
+
+gem 'rack-offline'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

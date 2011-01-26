@@ -1,2 +1,15 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+// main app js
+$(function(){
+  var classify = function(strokes, canvassified) { console.log(strokes); }
+  
+  var canvas = $.canvassify('#recognition-canvas .canvas', {width: 400, height: 400, callback: classify});
+  $('#recognition-canvas button.clear').click(function(){
+    canvas.clear();
+    return false;
+  });
+  $('#recognition-canvas button.recognize').click(function(){
+    classify(canvas.strokes, canvas);
+    canvas.clear();
+    return false;
+  });
+});

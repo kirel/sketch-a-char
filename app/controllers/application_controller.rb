@@ -41,4 +41,9 @@ class ApplicationController < ActionController::Base
   def permission_denied
     render :file => "public/401.html", :status => :unauthorized
   end
+  
+  def cache!
+    response.headers['Cache-Control'] = 'public, max-age=86400' # cache for a day
+  end
+  
 end

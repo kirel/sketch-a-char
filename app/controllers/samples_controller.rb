@@ -3,7 +3,7 @@ class SamplesController < ApplicationController
   before_filter :require_current_user, :except => [:index]
   
   def index
-    @samples = @sym.samples.order('samples.plusminus_cache DESC').all
+    @samples = @sym.samples.best_first.all
   end
 
   # ajax action
