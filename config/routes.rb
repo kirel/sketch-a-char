@@ -23,23 +23,23 @@ DetexifyRails::Application.routes.draw do
   match '/index.html', :to => "app#index"
   root :to => "app#index"
   
-  match "/cache-manifest" => Rails::Offline.new {
-    
-    cache 'index.html'    
-    
-    files = Dir[
-      "#{root}/**/*.html",
-      "#{root}/stylesheets/**/*.css",
-      "#{root}/javascripts/**/*.js",
-      "#{root}/images/**/*.*"]
-
-    files.each do |file|
-      cache Pathname.new(file).relative_path_from(root)
-    end
-
-    cache 'api/samples.json'
-    cache 'api/symbols.json'
-
-    network "/"
-  }
+  # match "/cache-manifest" => Rails::Offline.new {
+  #   
+  #   cache 'index.html'    
+  #   
+  #   files = Dir[
+  #     "#{root}/**/*.html",
+  #     "#{root}/stylesheets/**/*.css",
+  #     "#{root}/javascripts/**/*.js",
+  #     "#{root}/images/**/*.*"]
+  # 
+  #   files.each do |file|
+  #     cache Pathname.new(file).relative_path_from(root)
+  #   end
+  # 
+  #   cache 'api/samples.json'
+  #   cache 'api/symbols.json'
+  # 
+  #   network "/"
+  # }
 end
