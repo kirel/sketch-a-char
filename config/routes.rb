@@ -5,10 +5,6 @@ DetexifyRails::Application.routes.draw do
   match '/login', to: 'sessions#new', as: :login
   match '/logout', to: 'sessions#destroy', as: :logout
   
-  # api controller
-  get "api/samples"
-  get "api/symbols"
-
   # management
   resources :syms do
     resources :samples, only: [:index, :create, :destroy] do

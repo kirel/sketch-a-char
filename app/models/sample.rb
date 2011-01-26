@@ -14,4 +14,8 @@ class Sample < ActiveRecord::Base
     self.plusminus_cache = self.plusminus
     save(validate: false)
   end
+  
+  def as_json options = {}
+    data
+  end
 end
