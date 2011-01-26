@@ -1,5 +1,4 @@
 !!! 5
-//%html{manifest:'cache-manifest'}
 %html
   %head
     %title Sketch-A-Char
@@ -11,6 +10,12 @@
     = javascript_include_tag 'raphael-min.js'
     = javascript_include_tag 'jquery.mustache.js'
     = javascript_include_tag 'jquery.raphael.canvassify.js'
-    = javascript_include_tag 'jquery.hive.js'
+    = csrf_meta_tag
   %body
+    %small
+      - if signed_in?
+        Signed in as
+        = current_user.name
+      - else
+        = link_to 'Login', login_path
     = yield
