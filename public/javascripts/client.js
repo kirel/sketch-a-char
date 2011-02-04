@@ -1,6 +1,7 @@
 // main app js
 $(function(){
   var app_data = JSON.parse($('#app-data').html());
+  console.log('App Data:', app_data);
   
   var Symbol = Backbone.Model.extend({});
   var Symbols = Backbone.Collection.extend({
