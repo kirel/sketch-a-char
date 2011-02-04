@@ -3,6 +3,8 @@ $(function(){
   var app_data = JSON.parse($('#app-data').html());
   console.log('App Data:', app_data);
   
+  var symbol_map = _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym }))}, {});
+  
   var Symbol = Backbone.Model.extend({});
   var Symbols = Backbone.Collection.extend({
     model: Symbol,
