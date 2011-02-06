@@ -3,7 +3,7 @@ class RepresentationsController < ApplicationController
   before_filter :find_sym
 
   def index
-    @representations = Representation.all
+    @representations = @sym.representations.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +11,7 @@ class RepresentationsController < ApplicationController
   end
 
   def show
-    @representation = Representation.find(params[:id])
+    @representation = @sym.representations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,8 +19,9 @@ class RepresentationsController < ApplicationController
   end
 
   def new
-    @latex_representation = LatexRepresentation.new
-    @unicode_representation = UnicodeRepresentation.new
+    @latex_representation = @sym.latex_representations.build
+    @latex_representation.build_attachment
+    @unicode_representation = @sym.unicode_representations.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -28,13 +29,13 @@ class RepresentationsController < ApplicationController
   end
 
   def edit
-    @representation = Representation.find(params[:id])
+    @representation = @sym.representations.find(params[:id])
     instance_variable_set "@#{@representation.class.model_name.underscore}", @representation
   end
 
   def create
-    @latex_representation = LatexRepresentation.new(params[:latex_representation])
-    @unicode_representation = UnicodeRepresentation.new(params[:unicode_representation])
+    @latex_representation = @sym.latex_representations.build(params[:latex_representation])
+    @unicode_representation = @sym.unicode_representations.build(params[:unicode_representation])
     
     @representation = @latex_representation if params[:latex_representation]
     @representation = @unicode_representation if params[:unicode_representation]
@@ -49,7 +50,7 @@ class RepresentationsController < ApplicationController
   end
 
   def update
-    @representation = Representation.find(params[:id])
+    @representation = @sym.representations.find(params[:id])
 
     respond_to do |format|
       if @representation.update_attributes(representation_params)

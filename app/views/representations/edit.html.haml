@@ -1,7 +1,7 @@
 %h1 Editing representation
 
 - if @latex_representation
-  = semantic_form_for([@sym, @latex_representation]) do |f|
+  = semantic_form_for([@sym, @latex_representation], html: {multipart: true}) do |f|
     = f.semantic_errors
     = render 'latex_representation_form', :f => f
 
