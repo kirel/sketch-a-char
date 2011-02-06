@@ -1,0 +1,7 @@
+%p#notice= notice
+
+= render @representation
+
+= link_to 'Edit', [:edit, @sym, @representation]
+|
+= link_to 'Back', sym_representations_path(@sym)

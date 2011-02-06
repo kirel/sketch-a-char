@@ -1,5 +1,7 @@
 DetexifyRails::Application.routes.draw do
   
+  resources :representations
+
   # login/logout
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/login', to: 'sessions#new', as: :login
@@ -7,6 +9,9 @@ DetexifyRails::Application.routes.draw do
   
   # management
   resources :syms do
+    resources :representations
+    resources :latex_representations,   controller: :representations
+    resources :unicode_representations, controller: :representations
     resources :samples, only: [:index, :create, :destroy] do
       member do
         post :vote_up

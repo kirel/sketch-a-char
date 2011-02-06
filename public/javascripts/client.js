@@ -105,7 +105,7 @@ $(function(){
   });
   
   $.Hive.get(0).send({
-    init: _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym.sam }))}, {})
+    init: _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym.sam }))}, {}) // sample map { id => samples }
   }); 
   
   // interaction

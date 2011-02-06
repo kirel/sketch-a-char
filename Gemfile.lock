@@ -46,6 +46,10 @@ GEM
       addressable (~> 2.2.2)
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
+    formtastic (1.1.0)
+      actionpack (>= 2.3.0)
+      activesupport (>= 2.3.0)
+      i18n (>= 0.4.0)
     friendly_id (3.2.0)
       babosa (~> 0.2.1)
     haml (3.0.25)
@@ -147,6 +151,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
@@ -154,6 +159,7 @@ PLATFORMS
 DEPENDENCIES
   autotest
   factory_girl_rails
+  formtastic (~> 1.1.0)
   friendly_id (~> 3.2)
   haml
   jquery-rails (>= 0.2.6)
@@ -164,3 +170,4 @@ DEPENDENCIES
   rspec-rails (~> 2.4)
   syntax
   thumbs_up
+  will_paginate (~> 3.0.pre2)

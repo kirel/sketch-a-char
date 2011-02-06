@@ -26,6 +26,8 @@ gem 'omniauth'
 gem "friendly_id", "~> 3.2"
 gem 'thumbs_up'
 gem 'haml'
+gem 'formtastic', '~> 1.1.0'
+gem "will_paginate", "~> 3.0.pre2"
 
 gem "autotest"
 

@@ -1,0 +1,11 @@
+%h1 New representation
+
+= semantic_form_for([@sym, @latex_representation]) do |f|
+  = f.semantic_errors
+  = render 'latex_representation_form', :f => f
+
+= semantic_form_for([@sym, @unicode_representation]) do |f|
+  = f.semantic_errors
+  = render 'unicode_representation_form', :f => f
+
+= link_to 'Back', sym_representations_path(@sym)

@@ -1,0 +1,15 @@
+%h1 Listing representations
+%ul
+  - @representations.each do |representation|
+    %li
+    = render representation
+    
+    = link_to 'Show', [@sym, representation]
+    |
+    = link_to 'Edit', [:edit, @sym, representation]
+    |
+    = link_to 'Destroy', [@sym, representation], :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Representation', new_sym_representation_path(@sym)
+|
+= link_to 'Back to symbol', @sym
