@@ -6,7 +6,6 @@ module AppData
       :include => {
         unicode_representations: { only: :codepoint, methods: :unicode },
         latex_representations: { only: [:command, :package], methods: :image },
-        representations: {}
       }
   end
 end
