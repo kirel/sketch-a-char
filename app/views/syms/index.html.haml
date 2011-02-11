@@ -1,0 +1,19 @@
+%h1 Symbols
+
+= link_to 'app', root_path
+
+%ul#symbols
+- @syms.each do |sym|
+  %li
+    = render sym
+    %ul
+      %li= link_to 'Show', sym
+      %li= link_to 'Samples', sym_samples_path(sym)
+      - if can? :manage, sym
+        %li.admin= link_to 'Edit', edit_sym_path(sym)
+        %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
+
+
+- if can? :manage, Sym
+  %br/
+  = link_to 'New Sym', new_sym_path

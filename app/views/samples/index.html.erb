@@ -1,7 +1,10 @@
-<h1>Listing samples</h1>
+<h1>Samples</h1>
+
+<%= link_to 'back', syms_path %>
 
 <h2><%= @sym.name %></h2>
 
+<% if can? :create, Sample %>
 <div id="training-canvas" class="canvas"></div>
 <a href="#" id="train">train</a>
 <a href="#" id="clear">clear</a>
@@ -12,7 +15,7 @@
   $('#train').click(function(){
     $.ajax({
       url: '<%= sym_samples_path(@sym) %>',
-      dataType: "json",
+      dataType: "script",
       type: "POST",
       processData: false,
       contentType: "application/json",
@@ -21,6 +24,7 @@
     canvas.clear();return false;
   });
 </script>
+<% end %>
 
 <ul class='samples'>
 <% @samples.each do |sample| %>

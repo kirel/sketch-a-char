@@ -2,10 +2,10 @@
 
 <div class='canvas sample-canvas' data-strokes='<%= sample.data.to_json.html_safe %>'></div>
 
-<p>Quality: <%= sample.plusminus %></p>
+<p>Quality: <span class="plusminus"><%= sample.plusminus %><span></p>
 
 <ul>
-  <% if admin? %><li><%= link_to 'Destroy', [@sym, sample], :confirm => 'Are you sure?', :method => :delete %></li><% end %>
+  <% if can? :destroy, sample %><li><%= link_to 'Destroy', [@sym, sample], remote: true, confirm: 'Are you sure?', method: :delete %></li><% end %>
   <% if signed_in? -%>
   <li><%= link_to 'Vote up', vote_up_sym_sample_path(@sym, sample), remote: true, method: :post %></li>
   <li><%= link_to 'Vote down', vote_down_sym_sample_path(@sym, sample), remote: true, method: :post %></li>

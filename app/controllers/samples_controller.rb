@@ -12,9 +12,9 @@ class SamplesController < ApplicationController
     @sample.submitter = current_user
 
     if @sample.save
-      head :created
+      # create.js
     else
-      render :json => @sample.errors, :status => :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class SamplesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(sym_samples_url(@sym)) }
-      format.js  { head :ok }
+      format.js # destry.js.erb
     end
   end
   
@@ -33,13 +33,11 @@ class SamplesController < ApplicationController
   def vote_up
     @sample = @sym.samples.find(params[:id])
     current_user.vote_exclusively_for(@sample)
-    head :ok
   end
   
   def vote_down
     @sample = @sym.samples.find(params[:id])
     current_user.vote_exclusively_against(@sample)
-    head :ok
   end
   
   protected
