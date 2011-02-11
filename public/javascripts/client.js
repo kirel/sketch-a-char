@@ -71,7 +71,7 @@ $(function(){
     },
     
     render: function() {
-      var template = "{{#hits}}<li>{{id}} : {{score}}</li>{{/hits}}";
+      var template = $('#hits-template').html();
       var html = $.mustache(template, {hits:this.collection.toJSON()});
       $(this.el).html(html);
       return this;
@@ -97,7 +97,7 @@ $(function(){
         console.groupEnd();
       }
       else if (data.result) {
-        var h = _(data.result).map(function(score, id) { return new Hit({score: score, id: id}); });
+        var h = _(data.result).map(function(score, id) { return new Hit({score: score, symbol: symbol_map[id]}); });
         console.log(h);
         hits.refresh(h);
       }

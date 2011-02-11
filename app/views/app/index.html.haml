@@ -20,5 +20,31 @@
     
 %script{id: 'app-data', type: 'application/json'}= @json = @app_data.to_json.html_safe
 
+%script{id: 'hits-template', type: 'tmpl/mustache'}
+  {{#hits}}
+  %li
+    {{#symbol}}
+    %p {{name}}
+    %ul.latex
+      {{#latex_representations}}
+      %li
+        .latex
+          {{#package}}
+          %p.package Package: \usepackage{ {{package}} }
+          {{/package}}
+          %p.command Command: \{{command}}
+          %img{src:"{{image}}"}
+      {{/latex_representations}}
+    %ul.unicode
+      {{#unicode_representations}}
+      %li
+        .unicode
+          %p Char: {{unicode}}
+          %p Codepoint: U+{{codepoint}}
+      {{/unicode_representations}}
+    {{/symbol}}
+    %p Score: {{score}}
+  {{/hits}}
+
 #debug
   JSON data bytesize: #{@json.bytesize}
