@@ -6,6 +6,26 @@
  */
 
 (function($) {
+	// Make sure that every Ajax request sends the CSRF token
+	function CSRFProtection(fn) {
+		var token = $('meta[name="csrf-token"]').attr('content');
+		if (token) fn(function(xhr) { xhr.setRequestHeader('X-CSRF-Token', token) });
+	}
+	if ($().jquery == '1.5') { // gruesome hack
+		var factory = $.ajaxSettings.xhr;
+		$.ajaxSettings.xhr = function() {
+			var xhr = factory();
+			CSRFProtection(function(setHeader) {
+				var open = xhr.open;
+				xhr.open = function() { open.apply(this, arguments); setHeader(this) };
+			});
+			return xhr;
+		};
+	}
+	else $(document).ajaxSend(function(e, xhr) {
+		CSRFProtection(function(setHeader) { setHeader(xhr) });
+	});
+
 	// Triggers an event on an element and returns the event result
 	function fire(obj, name, data) {
 		var event = new $.Event(name);
@@ -94,11 +114,19 @@
 		return !message || (fire(element, 'confirm') && confirm(message));
 	}
 
+	function requiredValuesMissing(form) {
+		var missing = false;
+		form.find('input[name][required]').each(function() {
+			if (!$(this).val()) missing = true;
+		});
+		return missing;
+	}
+
 	$('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
 		var link = $(this);
 		if (!allowAction(link)) return false;
 
-		if (link.attr('data-remote')) {
+		if (link.attr('data-remote') != undefined) {
 			handleRemote(link);
 			return false;
 		} else if (link.attr('data-method')) {
@@ -108,14 +136,18 @@
 	});
 
 	$('form').live('submit.rails', function(e) {
-		var form = $(this);
+		var form = $(this), remote = form.attr('data-remote') != undefined;
 		if (!allowAction(form)) return false;
 
-		if (form.attr('data-remote')) {
+		// skip other logic when required values are missing
+		if (requiredValuesMissing(form)) return !remote;
+
+		if (remote) {
 			handleRemote(form);
 			return false;
 		} else {
-			disableFormElements(form);
+			// slight timeout so that the submit button gets properly serialized
+			setTimeout(function(){ disableFormElements(form) }, 13);
 		}
 	});
 

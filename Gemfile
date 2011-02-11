@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -28,6 +28,7 @@ gem 'thumbs_up'
 gem 'haml'
 gem 'formtastic', '~> 1.1.0'
 gem "will_paginate", "~> 3.0.pre2"
+gem "cancan"
 
 gem "autotest"
 
