@@ -21,7 +21,7 @@ DetexifyRails::Application.routes.draw do
   end
   
   # root
-  match '/index.html', :to => "app#index"
+  match '/index', :to => "app#index"
   root :to => "app#index"
   
   # match "/cache-manifest" => Rails::Offline.new {
