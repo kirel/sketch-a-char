@@ -1,18 +1,17 @@
+// uses jQuery, Raphael and Underscore
 (function($) {
   
-  function Point(x,y) {
-    this.x = x;
-    this.y = y;
-    this.t = (new Date()).getTime();
+  function now() {
+    return (new Date()).getTime();
   }
   
   function stroke2path(stroke) {
     var first = _.first(stroke);
-    var path = _.map(_.rest(stroke), function(point) { return ["L", point.x, point.y]; })
+    var path = _.map(_.rest(stroke), function(point) { return ["L", point[0], point[1]]; })
     if (path.length == 0)
-      return [["M", first.x, first.y], ["l", 0, 0.1]];
+      return [["M", first[0], first[1]], ["l", 0, 0.1]];
     else
-      return [["M", first.x, first.y]].concat(path);
+      return [["M", first[0], first[1]]].concat(path);
   }
   
   // canvassify object constructor -> new Canvassified(...) yields object
@@ -39,7 +38,7 @@
       x = evt.pageX - $(container).offset().left;
       y = evt.pageY - $(container).offset().top;
 
-      current_stroke = [new Point(x,y)]; // initialize new stroke
+      current_stroke = [[x,y,now()]]; // initialize new stroke
       current_path = paper.path(stroke2path(current_stroke)).attr({'stroke-width': 5, 'stroke-linecap': 'round'});
     }
     var stroke = function(evt) {
@@ -50,7 +49,7 @@
 
         // console.log('pushing point at',x, y);
         
-        current_stroke.push(new Point(x, y));
+        current_stroke.push([x,y,now()]);
         current_path.attr('path', stroke2path(current_stroke));
       }
       // else {
