@@ -66,6 +66,28 @@ var Strokes = (function () {
       var rMax = lbrt[2];
       var tMax = lbrt[3];
       return $M([[lbrt[0], lbrt[2]], [lbrt[1], lbrt[3]]]);
+    },
+    fitInto: function(stroke, targetBB) {
+      var sourceBB = this.boundingbox(stroke);
+      var reset = sourceBB.col(1);
+      var bbWidth = sourceBB.e(1,1) - sourceBB.e(1,2);
+      var bbHeight = sourceBB.e(2,1) - sourceBB.e(2,2);
+      var targetWidth = targetBB.e(1,1) - targetBB.e(1,2);
+      var targetHeight = targetBB.e(2,1) - targetBB.e(2,2);
+      var scaleX = 1;
+      if (bbWidth !== 0) scaleX = 1/bbWidth * targetWidth;
+      var scaleY = 1;
+      if (bbHeight !== 0) scaleY = 1/bbHeight * targetHeight;
+      var scale = Matrix.Diagonal([scaleX, scaleY]);
+      var transX = targetBB.e(1,1);
+      if (bbWidth === 0) transX = transX + 1/2 * targetWidth;
+      var transY = targetBB.e(2,1);
+      if (bbHeight === 0) transY = transY + 1/2 * targetHeight;
+      var trans = $V([transX, transY]);
+      
+      return _(stroke).map(function(p){
+        return scale.multiply(p.subtract(reset)).add(trans);
+      });
     }
   };
 })();

@@ -49,10 +49,16 @@
         var bl = $V([0,0]);
         var tr = $V([2,2]);
         var bb = Strokes.boundingbox([bl, tr]);
-        console.log(bb);
         ok(bb.col(1).eql(bl), 'bottom left is right');
         ok(bb.col(2).eql(tr), 'top right is right');
-      })
+      });
+      
+      test("fit into", function() {
+        var targetBB = $M([[0, 1], [0, 1]]);
+        var bb = Strokes.boundingbox(Strokes.fitInto(stroke, targetBB));
+        console.log(bb);
+        ok(bb.eql(targetBB), 'bounding boxes equal')
+      });
     });
   </script>
 </head>
