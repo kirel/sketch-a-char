@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Strokes Test</title>
+  <script type="text/javascript" charset="utf-8" src="../javascripts/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../javascripts/qunit.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../javascripts/underscore-min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../javascripts/sylvester.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../javascripts/strokes.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="../stylesheets/qunit.css">
+  <script type="text/javascript" charset="utf-8">
+    $(function(){
+
+      var stroke = _(_.range(10)).map(function() {
+        return Vector.Random(2);
+      });
+      
+      var p1 = Vector.Random(2);
+      var p2 = Vector.Random(2);
+      var p3 = Vector.Random(2);
+      var p4 = Vector.Random(2);
+      
+      test("similarity for strokes", function() {
+        ok( Strokes.sim(stroke, stroke), "The same vector is similar" );
+        ok( !Strokes.sim(stroke, []), "Different vectors are dissimilar" );
+      });
+      
+      test("unduplicate", function() {
+        var point = Vector.Random(2);
+        ok( Strokes.sim( [point], Strokes.unduplicate([point, point]) ), 'unduplicates' );
+      });
+
+      test("smooth", function() {        
+        ok( Strokes.sim( [], Strokes.smooth([]) ), 'empty' );
+        ok( Strokes.sim( [p1], Strokes.smooth([p1]) ), 'single' );
+        ok( Strokes.sim( [p1, p2], Strokes.smooth([p1, p2]) ), 'double' );
+
+        ok( Strokes.sim( Strokes.smooth([p1, p2, p3]), [p1, p1.add(p2).add(p3).x(1.0/3.0), p3] ), 'smooth' );
+        ok( Strokes.sim( Strokes.smooth([p1, p2, p3, p4]), [p1, p1.add(p2).add(p3).x(1.0/3.0), p2.add(p3).add(p4).x(1.0/3.0), p4]), 'smooth' );
+      });
+      
+      test("redistribute", function() {
+        ok( Strokes.redistribute(stroke), 'redistribute')
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1 id="qunit-header">Strokes Tests</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>
