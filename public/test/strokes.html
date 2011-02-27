@@ -42,8 +42,17 @@
       });
       
       test("redistribute", function() {
-        ok( Strokes.redistribute(stroke), 'redistribute')
+        ok( Strokes.redistribute(stroke), 'redistribute');
       });
+      
+      test("bounding box", function() {
+        var bl = $V([0,0]);
+        var tr = $V([2,2]);
+        var bb = Strokes.boundingbox([bl, tr]);
+        console.log(bb);
+        ok(bb.col(1).eql(bl), 'bottom left is right');
+        ok(bb.col(2).eql(tr), 'top right is right');
+      })
     });
   </script>
 </head>
