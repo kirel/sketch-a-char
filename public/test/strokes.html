@@ -79,6 +79,14 @@
         ]);
         var bb = Strokes.bbFit(sourceBB, targetBB);
         ok(bb.eql(fitBB), 'bounding boxes equal');
+        
+        var targetBB = $M([[0, 1], [0, 1]]);
+        var sourceBB = $M([[0, 0], [0, 0]]);
+        var fitBB = $M([[0.5, 0.5], [0.5, 0.5]]);
+        var bb = Strokes.bbFit(sourceBB, targetBB);
+        console.log(bb);
+        ok(bb.eql(fitBB), 'single point is centered');
+        
       });
     });
   </script>

@@ -75,6 +75,7 @@ var Strokes = (function () {
       var tMax = lbrt[3];
       return $M([[lbrt[0], lbrt[2]], [lbrt[1], lbrt[3]]]);
     },
+    // use fitInto(stroke, bbFit(boundingbox(stroke), targetBB)) !
     fitInto: function(stroke, targetBB) {
       var sourceBB = this.boundingbox(stroke);
       var reset = sourceBB.col(1);
@@ -101,9 +102,12 @@ var Strokes = (function () {
       var reset = sourceBB.col(1);
       
       // Hack for degenerated sourceBB
-      // aspectfit source@(a, b) target@(c, d) | a == b = ((1/2) `scalar` (c `add` d), (1/2) `scalar` (c `add` d))
-      // if (reset.eql(sourceBB.col(2))) return $M()
+      if (reset.eql(sourceBB.col(2))) return $M([
+        targetBB.col(1).add(targetBB.col(2)).x(1/2).elements,
+        targetBB.col(1).add(targetBB.col(2)).x(1/2).elements
+      ]);
       
+      // non degenerated cases
       var sourceWidth = width(sourceBB);
       var sourceHeight = height(sourceBB);
       var targetWidth = width(targetBB);
