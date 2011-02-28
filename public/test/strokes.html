@@ -56,8 +56,29 @@
       test("fit into", function() {
         var targetBB = $M([[0, 1], [0, 1]]);
         var bb = Strokes.boundingbox(Strokes.fitInto(stroke, targetBB));
-        console.log(bb);
         ok(bb.eql(targetBB), 'bounding boxes equal')
+      });
+      
+      test("bounding box fit", function() {
+        var targetBB = $M([[0, 1], [0, 1]]);
+        var sourceBB = $M([[1, 2], [1, 2]]);
+        var bb = Strokes.bbFit(sourceBB, targetBB);
+        ok(bb.eql(targetBB), 'bounding boxes equal');
+
+        var targetBB = $M([
+          [0, 3],
+          [0, 1]
+        ]);
+        var sourceBB = $M([
+          [0, 1],
+          [0, 1]
+        ]);
+        var fitBB = $M([
+          [1, 2],
+          [0, 1]
+        ]);
+        var bb = Strokes.bbFit(sourceBB, targetBB);
+        ok(bb.eql(fitBB), 'bounding boxes equal');
       });
     });
   </script>

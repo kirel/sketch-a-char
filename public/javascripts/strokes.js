@@ -1,5 +1,13 @@
 // uses sylvester and Underscore
 var Strokes = (function () {
+  var width = function(bb) {
+    return bb.e(1,2) - bb.e(1,1);
+  }
+  
+  var height = function(bb) {
+    return bb.e(2,2) - bb.e(2,1);
+  } 
+  
   return {
     sim: function(fst, snd) {
       if (fst.length === snd.length) {
@@ -70,10 +78,10 @@ var Strokes = (function () {
     fitInto: function(stroke, targetBB) {
       var sourceBB = this.boundingbox(stroke);
       var reset = sourceBB.col(1);
-      var bbWidth = sourceBB.e(1,1) - sourceBB.e(1,2);
-      var bbHeight = sourceBB.e(2,1) - sourceBB.e(2,2);
-      var targetWidth = targetBB.e(1,1) - targetBB.e(1,2);
-      var targetHeight = targetBB.e(2,1) - targetBB.e(2,2);
+      var bbWidth = width(sourceBB);
+      var bbHeight = height(sourceBB);
+      var targetWidth = width(targetBB);
+      var targetHeight = height(targetBB);
       var scaleX = 1;
       if (bbWidth !== 0) scaleX = 1/bbWidth * targetWidth;
       var scaleY = 1;
@@ -88,6 +96,36 @@ var Strokes = (function () {
       return _(stroke).map(function(p){
         return scale.multiply(p.subtract(reset)).add(trans);
       });
+    },
+    bbFit: function(sourceBB, targetBB) {
+      var reset = sourceBB.col(1);
+      
+      // Hack for degenerated sourceBB
+      // aspectfit source@(a, b) target@(c, d) | a == b = ((1/2) `scalar` (c `add` d), (1/2) `scalar` (c `add` d))
+      // if (reset.eql(sourceBB.col(2))) return $M()
+      
+      var sourceWidth = width(sourceBB);
+      var sourceHeight = height(sourceBB);
+      var targetWidth = width(targetBB);
+      var targetHeight = height(targetBB);
+      var sourceRatio = sourceWidth/sourceHeight;
+      var targetRatio = targetWidth/targetHeight;
+      // bigger ratio <~> wider
+      var sourceWider = sourceRatio > targetRatio;
+      if (sourceWider) {
+        var scaleFactor = targetWidth/sourceWidth;
+        var offset = $V([0, (targetHeight - scaleFactor*sourceHeight)/2]);
+      }
+      else {
+        var scaleFactor = targetHeight/sourceHeight;
+        var offset = $V([(targetWidth - scaleFactor*sourceWidth)/2, 0]);
+      }
+      var scale = Matrix.Diagonal([scaleFactor, scaleFactor]);
+      var trans = targetBB.col(1);
+      
+      return $M(_([sourceBB.col(1), sourceBB.col(2)]).map(function(p){
+        return scale.multiply(p.subtract(reset)).add(offset).add(trans).elements;
+      })).transpose();
     }
   };
 })();
