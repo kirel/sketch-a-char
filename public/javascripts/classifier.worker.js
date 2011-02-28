@@ -3,6 +3,7 @@ importScripts('sylvester.js');
 importScripts('underscore-min.js');
 importScripts('underscore-mixins.js');
 importScripts('dtw.js');
+importScripts('strokes.js');
 
 var samples = {};
 var counter = 0;
@@ -13,8 +14,11 @@ var measure = function(a, b) {
 
 var process = function(sample) {
   return _(sample).chain().map(function(stroke){
-    // TODO real processing.
-    return _(stroke).map(function(point){return $V(point.slice(0,2));});
+    stroke = _(stroke).map(function(point){return $V(point.slice(0,2));});
+    stroke = Strokes.smooth(stroke);
+    stroke = Strokes.fitInto(stroke, Strokes.bbFit(Strokes.boundingbox(stroke), $M([[0, 1], [0, 1]])));
+    // TODO more processing.
+    return stroke;
   }).flatten().value();
 }
 
