@@ -20,6 +20,23 @@ var Strokes = (function () {
         return false;
       }
     },
+    length: function(stroke) {
+      if (_(stroke).size() < 2) return 0;
+      var current = _(stroke).first();
+      stroke = _(stroke).rest();
+      var next = _(stroke).first();
+      var res = 0;
+      var dir, d;
+      while (!_(stroke).isEmpty()) {
+        dir = next.subtract(current);
+        d = Math.sqrt(dir.dot(dir));
+        res += d;
+        var current = next;
+        stroke = _(stroke).rest();
+        var next = _(stroke).first();
+      }
+      return res;
+    },
     unduplicate: function(stroke) {
       var res = _.first(stroke, 1);
       _(_.rest(stroke)).each(function(v) {

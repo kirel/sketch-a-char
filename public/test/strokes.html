@@ -27,6 +27,11 @@
         ok( !Strokes.sim(stroke, []), "Different vectors are dissimilar" );
       });
       
+      test("length", function() {
+        var stroke = [$V([0,0]), $V([0.1,0]), $V([0.2,0]), $V([0.3,0]), $V([0.4,0]), $V([0.5,0])];
+        ok( Strokes.length(stroke) == 0.5 , 'stroke length');
+      });
+      
       test("unduplicate", function() {
         var point = Vector.Random(2);
         ok( Strokes.sim( [point], Strokes.unduplicate([point, point]) ), 'unduplicates' );
