@@ -13,7 +13,7 @@ var Strokes = (function () {
       if (fst.length === snd.length) {
         return _(_.zip(fst, snd)).all(function (vs) {
           v = vs[0]; w = vs[1];
-          return v.distanceFrom(w) === 0;
+          return v.eql(w);
         });      
       }
       else {
@@ -23,7 +23,7 @@ var Strokes = (function () {
     unduplicate: function(stroke) {
       var res = _.first(stroke, 1);
       _(_.rest(stroke)).each(function(v) {
-        if (v.distanceFrom(_.last(res)) !== 0) {
+        if (!v.eql(_.last(res))) {
           res.push(v);
         }
       });
