@@ -40,18 +40,6 @@ var Strokes = (function () {
       }
       return res.concat(_.rest(stroke));
     },
-    redistribute: function(stroke, length) {
-      // var res = _.first(stroke, 1);
-      // var current = _.first(stroke);
-      // stroke = _.rest(stroke);
-      // while (stroke.length > 1) {
-      //   var last = _.last(res);
-      //   var next = _.first(stroke);
-      //   stroke = _.rest(stroke);
-      // }
-      // return res.concat(_.rest(stroke));
-      return stroke;
-    },
     // returns a Matrix where the cols are bottom-left and top-right
     boundingbox: function(stroke) {
       var l = _(stroke).first().e(1);
@@ -130,6 +118,47 @@ var Strokes = (function () {
       return $M(_([sourceBB.col(1), sourceBB.col(2)]).map(function(p){
         return scale.multiply(p.subtract(reset)).add(offset).add(trans).elements;
       })).transpose();
-    }
+    },
+    // use redistribute(stroke, length(stroke)/n)
+    redistribute: function(stroke, length) {
+      // redistribute' dist s@(p:q:ps) = p:(redist dist s) where -- first point always part of new stroke
+      //   redist :: Double -> Stroke -> Stroke
+      //   redist left (p:q:ps) | d < left = redist (left - d) (q:ps)
+      //                        | otherwise = ins:(redist dist (ins:q:ps))
+      //                          where
+      //                            dir = q `sub` p
+      //                            d = norm dir
+      //                            ins = p `add` ((left/d) `scalar` dir)
+      //   redist _ ps = ps -- done when only one left
+      // redistribute' _ ps = ps -- empty or single point strokes stay unmodified
+      
+      if (_(stroke).size() < 2) return stroke;
+      
+      var left = length;
+      var current = _(stroke).first();
+      var res = [current];
+      stroke = _(stroke).rest();
+      var next = _(stroke).first();
+      var dir, d, ins;
+      while (!_(stroke).isEmpty()) {
+        dir = next.subtract(current);
+        d = Math.sqrt(dir.dot(dir));
+        if (d < left) {
+          current = next;
+          stroke = _(stroke).rest();
+          next = _(stroke).first();
+          left = left - d;
+        }
+        else {
+          ins = current.add(dir.x(left/d));
+          res.push(ins);
+          current = ins;
+          // next stays as is
+          left = length;
+        }
+      }
+      res.push(current);
+      return res;
+    },
   };
 })();

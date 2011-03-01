@@ -41,10 +41,6 @@
         ok( Strokes.sim( Strokes.smooth([p1, p2, p3, p4]), [p1, p1.add(p2).add(p3).x(1.0/3.0), p2.add(p3).add(p4).x(1.0/3.0), p4]), 'smooth' );
       });
       
-      test("redistribute", function() {
-        ok( Strokes.redistribute(stroke), 'redistribute');
-      });
-      
       test("bounding box", function() {
         var bl = $V([0,0]);
         var tr = $V([2,2]);
@@ -99,9 +95,15 @@
           [0.5, 0.5]
         ]);
         var bb = Strokes.bbFit(sourceBB, targetBB);
-        console.log(bb);
         ok(bb.eql(fitBB), 'single point is centered');
         
+      });
+      
+      test('redistribute with length', function() {
+        var stroke = [$V([0,0]), $V([0.5,0])];
+        var expected = [$V([0,0]), $V([0.1,0]), $V([0.2,0]), $V([0.3,0]), $V([0.4,0]), $V([0.5,0])];
+        var actual = Strokes.redistribute(stroke, 0.1);
+        ok( Strokes.sim(expected, actual), "Redistribute works." );
       });
     });
   </script>
