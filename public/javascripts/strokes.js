@@ -105,7 +105,7 @@ var Strokes = (function () {
       if (reset.eql(sourceBB.col(2))) return $M([
         targetBB.col(1).add(targetBB.col(2)).x(1/2).elements,
         targetBB.col(1).add(targetBB.col(2)).x(1/2).elements
-      ]);
+      ]).transpose();
       
       // non degenerated cases
       var sourceWidth = width(sourceBB);
