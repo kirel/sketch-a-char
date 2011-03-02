@@ -104,11 +104,27 @@
         
       });
       
-      test('redistribute with length', function() {
+      test('redistribute', function() {
         var stroke = [$V([0,0]), $V([0.5,0])];
         var expected = [$V([0,0]), $V([0.1,0]), $V([0.2,0]), $V([0.3,0]), $V([0.4,0]), $V([0.5,0])];
         var actual = Strokes.redistribute(stroke, 0.1);
         ok( Strokes.sim(expected, actual), "Redistribute works." );
+        
+        // edge cases
+        ok( Strokes.sim([], Strokes.redistribute([], 0.1)), "Empty." );
+        ok( Strokes.sim([$V([0,0])], Strokes.redistribute([$V([0,0])], 0.1)), "Single point." );
+      });
+      
+      test('dominant', function() {
+        var stroke = [$V([0,0]), $V([1,0]), $V([1,1])];
+        // leave middle
+        var expected = stroke
+        var actual = Strokes.dominant(stroke, 85/180*Math.PI);
+        ok( Strokes.sim(expected, actual), "Leave middle." );
+        // kill middle
+        var expected = [$V([0,0]), $V([1,1])];
+        var actual = Strokes.dominant(stroke, 95/180*Math.PI);
+        ok( Strokes.sim(expected, actual), "Kill middle." );
       });
     });
   </script>

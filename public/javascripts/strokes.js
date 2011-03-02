@@ -177,5 +177,37 @@ var Strokes = (function () {
       res.push(current);
       return res;
     },
+    dominant: function(stroke, angle) {
+      // dominant :: Double -> Stroke -> Stroke
+      // dominant alpha s@(x:y:z:ps) = x:(dominant' alpha s) where
+      //   dominant' alpha (x:y:z:ps) | angle x y z < alpha = dominant' alpha (x:z:ps)
+      //                              | otherwise = y:(dominant' alpha (y:z:ps))
+      //   dominant' _ (x:ps) = ps
+      //   -- angle x y z = acos (min 1 (max (-1) (1/((norm v)*(norm w)) `scalar` v `dot` w))) where
+      //   angle x y z = acos $ fixdomain $ (v `dot` w)/((norm v)*(norm w)) where
+      //     fixdomain = (min 1).(max (-1))
+      //     v = y `sub` x
+      //     w = z `sub` y
+      // dominant _ ps = ps
+      if (_(stroke).size() < 3) return stroke;
+      
+      var current = _(stroke).first();
+      var res = [current];
+      stroke = _(stroke).rest();
+      var middle = _(stroke).first();
+      stroke = _(stroke).rest();
+      var next = _(stroke).first();
+      while (next) {
+        if (middle.subtract(current).angleFrom(next.subtract(middle)) > angle) {
+          res.push(middle);
+          current = middle;
+        }
+        middle = next;
+        stroke = _(stroke).rest();
+        next = _(stroke).first();
+      }      
+      res.push(middle);
+      return res;
+    }
   };
 })();
