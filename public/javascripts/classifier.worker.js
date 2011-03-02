@@ -12,12 +12,22 @@ var measure = function(a, b) {
   return a.distanceFrom(b);
 }
 
+// sanitize = (map (dominant alpha
+//                 .unduplicate
+//                 .redistribute 10
+//                 .aspectrefit (Point (0,0), Point (1,1))
+//                 .smooth
+//                 .unduplicate)
+//                 ).limit 10
+                
 var process = function(sample) {
   return _(sample).chain().map(function(stroke){
     stroke = _(stroke).map(function(point){return $V(point.slice(0,2));});
+    stroke = Strokes.unduplicate(stroke);
     stroke = Strokes.smooth(stroke);
     stroke = Strokes.fitInto(stroke, Strokes.bbFit(Strokes.boundingbox(stroke), $M([[0, 1], [0, 1]])));
-    // TODO more processing.
+    stroke = Strokes.redistribute(stroke, Strokes.length(stroke)/10);
+    stroke = Strokes.unduplicate(stroke);    
     return stroke;
   }).flatten().value();
 }
