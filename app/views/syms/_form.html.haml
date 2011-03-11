@@ -1,0 +1,7 @@
+= semantic_form_for(@sym) do |f|
+  = f.semantic_errors
+
+  = f.input :name
+  = f.input :description, as: :text
+  = f.buttons do
+    = f.commit_button
