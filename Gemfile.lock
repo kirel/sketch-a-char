@@ -35,7 +35,7 @@ GEM
       ZenTest (>= 4.4.1)
     babosa (0.2.2)
     builder (2.1.2)
-    cancan (1.5.1)
+    cancan (1.6.0)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
