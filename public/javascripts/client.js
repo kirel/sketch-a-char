@@ -56,7 +56,8 @@ $(function(){
   var Hit = Backbone.Model.extend({});
   
   var Hitlist = Backbone.Collection.extend({
-    model: Hit
+    model: Hit,
+    comparator: function(hit) { return hit.get('score'); }
   });
   
   var HitlistView = Backbone.View.extend({
