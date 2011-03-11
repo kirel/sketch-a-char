@@ -5,9 +5,11 @@ class Attachment < ActiveRecord::Base
   
   validates_presence_of :data
   validates_each :uploaded_file do |record, attr, val|
-    record.errors[:uploaded_file] << "Only png images." unless val.content_type == 'image/png'
-    size = 32.kilobytes
-    record.errors[:uploaded_file] << "Must be smaller than #{number_to_human_size(size)}" unless val.size < size
+    if val
+      record.errors[:uploaded_file] << "Only png images." unless val.content_type == 'image/png'
+      size = 32.kilobytes
+      record.errors[:uploaded_file] << "Must be smaller than #{number_to_human_size(size)}" unless val.size < size
+    end
   end
   
   def data_uri
