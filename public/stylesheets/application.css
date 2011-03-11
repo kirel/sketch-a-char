@@ -1,3 +1,11 @@
+/* Basic Styles */
+
+body, p, td, th {
+  font-family: sans-serif;
+}
+
+/* client styles */
+
 .canvas {
   border: 1px solid black;
 }
@@ -5,6 +13,8 @@
 .canvas button {
   float: right;
 }
+
+/* webservice styles */
 
 ul.samples > li {
   float: left;
