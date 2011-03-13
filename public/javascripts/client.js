@@ -74,7 +74,7 @@ $(function(){
     render: function() {
       var template = $('#hits-template').html();
       var html = $.mustache(template, {hits:this.collection.toJSON()});
-      $(this.el).html(html);
+      $(this.el).html(html).find('> li').toggleClass('collapsed').click(function() { $(this).toggleClass('collapsed'); });
       return this;
     }
     

@@ -1,10 +1,23 @@
+/* @override 
+	http://localhost:3000/stylesheets/styles.css?1299877234
+	http://localhost:3000/stylesheets/styles.css?1299878394
+	http://localhost:3000/stylesheets/styles.css?1299879668
+	http://localhost:3000/stylesheets/styles.css?1299880941
+	http://localhost:3000/stylesheets/styles.css?1299881685
+	http://localhost:3000/stylesheets/styles.css?1299882049
+*/
+
+/* cornsilk, whitesmoke, royalblue */
+
 /* Basic Styles */
 
 body, p, td, th {
   font-family: sans-serif;
 }
 
-/* client styles */
+/**** client styles ****/
+
+/* canvas */
 
 .canvas {
   border: 1px solid black;
@@ -12,6 +25,96 @@ body, p, td, th {
 
 .canvas button {
   float: right;
+}
+
+/* hit list */
+
+ul.hits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+}
+
+ul.hits li h3.name {
+  text-align: center;
+  background: cornsilk;
+  border-radius: 15px 15px 0 0;
+  padding: 5px;
+  margin: 20px 0 10px;
+}
+
+ul.hits li p.description {
+  background: white;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+
+ul.hits li.collapsed {
+  text-align: center;
+}
+
+ul.hits li.collapsed p.description {
+  display: none;
+}
+
+ul.hits li p.score {
+  text-align: center;
+  background: cornsilk;
+  border-radius: 0 0 15px 15px;
+  padding: 5px;
+  margin: 10px 0 0 0;
+}
+
+/* representations */
+
+ul.hits li.collapsed ul p.codepoint,
+ul.hits li.collapsed ul p.package,
+ul.hits li.collapsed ul p.command
+{
+	display: none;
+}
+
+ul.hits li ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.hits li ul li {
+  margin: 10px 0;
+  padding: 0 10px;
+  border-top: 1px dashed whitesmoke;
+}
+
+ul.hits li.collapsed ul h4 {
+  display: none;
+}
+
+ul.hits li.collapsed ul li {
+  margin: 0;
+  padding: 0;
+}
+
+
+ul.hits li.collapsed ul,
+ul.hits li.collapsed ul li,
+ul.hits li.collapsed ul li p
+{
+  display: inline;  
+}
+
+ul.hits li ul.latex li img,
+ul.hits li ul.unicode li p.char
+{
+  height: 30px;
+  padding: 5px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+ul.hits li ul.unicode p.char kbd {
+  font-size: 30px;
 }
 
 /* webservice styles */

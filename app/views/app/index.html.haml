@@ -17,6 +17,8 @@
   %h2 Help
   %p
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+= yield :javascript
     
 %script{id: 'app-data', type: 'application/json'}= @json = @app_data.to_json.html_safe
 
@@ -24,26 +26,33 @@
   {{#hits}}
   %li
     {{#symbol}}
-    %p {{name}}
+    %h3.name {{name}}
+    %p.description {{description}}
     %ul.latex
       {{#latex_representations}}
+      %h4 LaTeX
+      {{/latex_representations}}
+      {{#latex_representations}}
       %li
-        .latex
-          {{#package}}
-          %p.package Package: \usepackage{ {{package}} }
-          {{/package}}
-          %p.command Command: {{{command}}}
-          %img{src:"{{image}}"}
+        %img{src:"{{image}}"}
+        {{#package}}
+        %p.package Package: <code>\usepackage{ <kbd>{{package}}</kbd> }</code>
+        {{/package}}
+        %p.command Command: <kbd>{{{command}}}</kbd>
       {{/latex_representations}}
     %ul.unicode
       {{#unicode_representations}}
+      %h4 Unicode
+      {{/unicode_representations}}
+      {{#unicode_representations}}
       %li
-        .unicode
-          %p Char: {{unicode}}
-          %p Codepoint: U+{{codepoint}}
+        %p.char <kbd>{{unicode}}</kbd>
+        %p.codepoint Codepoint: <code>U+{{codepoint}}</code>
       {{/unicode_representations}}
     {{/symbol}}
-    %p Score: {{score}}
+    %p.score
+      Score:
+      %span.score <em>{{score}}</em>
   {{/hits}}
 
 #debug
