@@ -81,6 +81,11 @@ ul.hits li ul {
   padding: 0;
 }
 
+ul.hits li ul h4 {
+  margin: 20px 0 10px;
+  padding: 0 10px;
+}
+
 ul.hits li ul li {
   margin: 10px 0;
   padding: 0 10px;
@@ -109,14 +114,20 @@ ul.hits li ul.unicode li p.char
 {
   height: 30px;
   padding: 5px;
-  margin: 0;
+  margin: 0 10px 0 0;
   vertical-align: middle;
+  float: left;
 }
 
 ul.hits li ul.unicode p.char kbd {
   font-size: 30px;
 }
 
+ul.hits li.collapsed ul.latex li img,
+ul.hits li.collapsed ul.unicode li p.char
+{
+  float: none;
+}
 /* webservice styles */
 
 ul.samples > li {

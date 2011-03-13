@@ -28,7 +28,7 @@
     %p.description ${symbol.description}
     %ul.latex
       {{if symbol.latex_representations.length}}
-      %h4 LaTeX
+      %h4 LaTeX:
       {{/if}}
       {{each symbol.latex_representations}}
       %li
@@ -40,11 +40,11 @@
       {{/each}}
     %ul.unicode
       {{if symbol.unicode_representations.length}}
-      %h4 Unicode
+      %h4 Unicode:
       {{/if}}
       {{each symbol.unicode_representations}}
       %li
-        %p.char <kbd>${gunicode}</kbd>
+        %p.char <kbd>${unicode}</kbd>
         %p.codepoint Codepoint: <code>U+${codepoint}</code>
       {{/each}}
     %p.score
