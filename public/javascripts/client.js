@@ -19,7 +19,7 @@ $(function(){
       this.set({strokes:[]});
     }
   });
-  
+    
   var CanvasView = Backbone.View.extend({
     // className: 'canvas',
     
@@ -59,7 +59,7 @@ $(function(){
     model: Hit,
     comparator: function(hit) { return hit.get('score'); }
   });
-  
+    
   var HitlistView = Backbone.View.extend({
     
     tagName: 'ul',
@@ -72,8 +72,8 @@ $(function(){
     },
     
     render: function() {
-      var template = $('#hits-template').html();
-      var html = $.mustache(template, {hits:this.collection.toJSON()});
+      var html = $('#hits-template').tmpl(this.collection.toJSON());
+      console.log(this.collection.toJSON());
       $(this.el).html(html).find('> li').toggleClass('collapsed').click(function() { $(this).toggleClass('collapsed'); });
       return this;
     }

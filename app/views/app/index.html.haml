@@ -22,38 +22,34 @@
     
 %script{id: 'app-data', type: 'application/json'}= @json = @app_data.to_json.html_safe
 
-%script{id: 'hits-template', type: 'tmpl/mustache'}
-  {{#hits}}
+%script{id: 'hits-template', type: 'text/x-jquery-tmpl'}
   %li
-    {{#symbol}}
-    %h3.name {{name}}
-    %p.description {{description}}
+    %h3.name ${symbol.name}
+    %p.description ${symbol.description}
     %ul.latex
-      {{#latex_representations}}
+      {{if symbol.latex_representations.length}}
       %h4 LaTeX
-      {{/latex_representations}}
-      {{#latex_representations}}
+      {{/if}}
+      {{each symbol.latex_representations}}
       %li
-        %img{src:"{{image}}"}
-        {{#package}}
-        %p.package Package: <code>\usepackage{ <kbd>{{package}}</kbd> }</code>
-        {{/package}}
-        %p.command Command: <kbd>{{{command}}}</kbd>
-      {{/latex_representations}}
+        %img{src:"${image}"}
+        {{if package}}
+        %p.package Package: <code>\usepackage{ <kbd>${package}</kbd> }</code>
+        {{/if}}
+        %p.command Command: <kbd>${command}</kbd>
+      {{/each}}
     %ul.unicode
-      {{#unicode_representations}}
+      {{if symbol.unicode_representations.length}}
       %h4 Unicode
-      {{/unicode_representations}}
-      {{#unicode_representations}}
+      {{/if}}
+      {{each symbol.unicode_representations}}
       %li
-        %p.char <kbd>{{unicode}}</kbd>
-        %p.codepoint Codepoint: <code>U+{{codepoint}}</code>
-      {{/unicode_representations}}
-    {{/symbol}}
+        %p.char <kbd>${gunicode}</kbd>
+        %p.codepoint Codepoint: <code>U+${codepoint}</code>
+      {{/each}}
     %p.score
       Score:
-      %span.score <em>{{score}}</em>
-  {{/hits}}
+      %span.score <em>${score}</em>
 
 #debug
   JSON data bytesize: #{@json.bytesize}
