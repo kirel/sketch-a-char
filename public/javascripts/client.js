@@ -1,9 +1,5 @@
 // main app js
-$(function(){
-  var app_data = JSON.parse($('#app-data').html());
-  console.log('App Data:', app_data);
-  
-  var symbol_map = _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym }))}, {});
+$(function(){    
   
   var Symbol = Backbone.Model.extend({});
   var Symbols = Backbone.Collection.extend({
@@ -81,33 +77,43 @@ $(function(){
   });
   
   // setting everything up
-  
   var strokes = new StrokesModel({strokes:[]});
   var canvas = new CanvasView({el: $('#canvas'), model:strokes, width: 400, height: 400, clear: true});
   
   var hits = new Hitlist([new Hit()]);
   var hitlist = new HitlistView({collection: hits});
+    
+  // get app data and initialize hive
+  // TODO App not fully initialized until the next request is done.
+  $.getJSON('index.json', function(app_data) {
+    console.log('App Data:', app_data);
+    
+    var symbol_map = _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym }))}, {});
   
-  // worker
-  $.Hive.create({
-    worker: 'javascripts/classifier.worker.js',
-    receive: function (data) {
-      if (data.message) {
-        console.group('RECEIVED MESSAGE - WORKER: #' + data.WORKER_ID);
-          console.log( data.message );  
-        console.groupEnd();
+    // worker
+    $.Hive.create({
+      worker: 'javascripts/classifier.worker.js',
+      receive: function (data) {
+        if (data.message) {
+          console.group('RECEIVED MESSAGE - WORKER: #' + data.WORKER_ID);
+            console.log( data.message );  
+          console.groupEnd();
+        }
+        else if (data.result) {
+          var h = _(data.result).map(function(score, id) { return new Hit({score: score, symbol: symbol_map[id]}); });
+          console.log(h);
+          hits.refresh(h);
+        }
       }
-      else if (data.result) {
-        var h = _(data.result).map(function(score, id) { return new Hit({score: score, symbol: symbol_map[id]}); });
-        console.log(h);
-        hits.refresh(h);
-      }
-    }
+    });
+    
+    $.Hive.get(0).send({
+      init: _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym.sam }))}, {}) // sample map { id => samples }
+    }); 
+    
+    // TODO: App is initialized and can be used now?!?
+    
   });
-  
-  $.Hive.get(0).send({
-    init: _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym.sam }))}, {}) // sample map { id => samples }
-  }); 
   
   // interaction
 
