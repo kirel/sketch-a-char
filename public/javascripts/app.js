@@ -70,7 +70,7 @@ $(function(){
     render: function() {
       var html = $('#hits-template').tmpl(this.collection.toJSON());
       console.log(this.collection.toJSON());
-      $(this.el).html(html).find('> li').toggleClass('collapsed').click(function() { $(this).toggleClass('collapsed'); });
+      $(this.el).html(html).find('> li').addClass('collapsed').click(function() { $(this).removeClass('collapsed'); });
       return this;
     }
     
