@@ -29,14 +29,19 @@ body, p, td, th {
 
 /* hit list */
 
-ul.hits {
+ul.hits, ul.symbols {
   list-style: none;
   margin: 0;
   padding: 0;
   width: 400px;
 }
 
-ul.hits li h3.name {
+div.symbol {
+  width: 400px;
+}
+
+ul.hits li h3.name,
+.symbol h3.name {
   text-align: center;
   background: cornsilk;
   border-radius: 15px 15px 0 0;
@@ -44,7 +49,8 @@ ul.hits li h3.name {
   margin: 20px 0 10px;
 }
 
-ul.hits li p.description {
+ul.hits li p.description,
+.symbol p.description {
   background: white;
   padding: 0 10px;
   margin: 10px 0;
@@ -52,13 +58,15 @@ ul.hits li p.description {
 
 ul.hits li.collapsed {
   text-align: center;
+  cursor: pointer;
 }
 
 ul.hits li.collapsed p.description {
   display: none;
 }
 
-ul.hits li p.score {
+ul.hits li p.score,
+.symbol .controls {
   text-align: center;
   background: cornsilk;
   border-radius: 0 0 15px 15px;
@@ -75,24 +83,24 @@ ul.hits li.collapsed ul p.command
 	display: none;
 }
 
-ul.hits li ul {
+ul.hits li ul, .symbol ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-ul.hits li ul h4 {
-  margin: 20px 0 10px;
+ul.hits li h4, .symbol h4 {
+  margin: 30px 0 10px;
   padding: 0 10px;
 }
 
-ul.hits li ul li {
+ul.hits li ul li, .symbol ul li {
   margin: 10px 0;
   padding: 0 10px;
   border-top: 1px dashed whitesmoke;
 }
 
-ul.hits li.collapsed ul h4 {
+ul.hits li.collapsed h4 {
   display: none;
 }
 
@@ -110,7 +118,9 @@ ul.hits li.collapsed ul li p
 }
 
 ul.hits li ul.latex li img,
-ul.hits li ul.unicode li p.char
+ul.hits li ul.unicode li p.char,
+.symbol ul.latex li img,
+.symbol ul.unicode li p.char
 {
   height: 30px;
   padding: 5px;
@@ -119,7 +129,7 @@ ul.hits li ul.unicode li p.char
   float: left;
 }
 
-ul.hits li ul.unicode p.char kbd {
+ul.hits li ul.unicode p.char kbd, .symbol ul.unicode p.char kbd {
   font-size: 30px;
 }
 

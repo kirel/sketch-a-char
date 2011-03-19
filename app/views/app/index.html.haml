@@ -2,7 +2,7 @@
 
 %nav#nav
   %ul
-    %li= link_to 'app', root_path
+    %li= link_to 'sketch', root_path
     %li= link_to 'symbols', syms_path
 
 #canvas-area
@@ -24,10 +24,9 @@
   %li
     %h3.name ${symbol.name}
     %p.description ${symbol.description}
+    {{if symbol.latex_representations.length}}
+    %h4 LaTeX:
     %ul.latex
-      {{if symbol.latex_representations.length}}
-      %h4 LaTeX:
-      {{/if}}
       {{each symbol.latex_representations}}
       %li
         %img{src:"${image}"}
@@ -36,15 +35,16 @@
         {{/if}}
         %p.command Command: <kbd>${command}</kbd>
       {{/each}}
+    {{/if}}
+    {{if symbol.unicode_representations.length}}
+    %h4 Unicode:
     %ul.unicode
-      {{if symbol.unicode_representations.length}}
-      %h4 Unicode:
-      {{/if}}
       {{each symbol.unicode_representations}}
       %li
         %p.char <kbd>${unicode}</kbd>
         %p.codepoint Codepoint: <code>U+${codepoint}</code>
       {{/each}}
+    {{/if}}
     %p.score
       Score:
       %span.score <em>${score}</em>

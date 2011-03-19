@@ -1,7 +1,28 @@
 .symbol
-  %p
-    Name:
-    = sym.name
-  %p
-    Description:
-    = sym.description
+  %h3.name= sym.name
+  %p.description= sym.description
+  - if sym.latex_representations.any?
+    %h4 LaTeX:
+    %ul.latex
+      - sym.latex_representations.each do |latex|
+        %li
+          %img{src:latex.image}
+          - if latex.package
+            %p.package Package: <code>\usepackage{ <kbd>#{latex.package}</kbd> }</code>
+          %p.command Command: <kbd>#{latex.command}</kbd>
+  - if sym.unicode_representations.any?
+    %h4 Unicode:
+    %ul.unicode
+      - sym.unicode_representations.each do |unicode|
+        %li
+          %p.char <kbd>#{unicode.unicode}</kbd>
+          %p.codepoint Codepoint: <code>U+#{unicode.codepoint}</code>
+  .controls
+    %ul
+      %li= link_to 'Show', sym
+      %li= link_to 'Samples', sym_samples_path(sym)
+      - if can? :manage, sym
+        %li.admin= link_to 'Representations', sym_representations_path(sym)
+        %li.admin= link_to 'Edit', edit_sym_path(sym)
+        %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
+    
