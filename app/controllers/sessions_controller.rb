@@ -17,4 +17,8 @@ class SessionsController < ApplicationController
     logout!
     redirect_to root_path
   end
+  
+  def fail
+    redirect_to root_path, :error => 'Hat nicht geklappt.'
+  end
 end

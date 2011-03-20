@@ -4,6 +4,7 @@ DetexifyRails::Application.routes.draw do
 
   # login/logout
   match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: 'sessions#fail'
   match '/login', to: 'sessions#new', as: :login
   match '/logout', to: 'sessions#destroy', as: :logout
   
