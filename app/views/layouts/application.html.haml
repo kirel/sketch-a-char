@@ -22,6 +22,8 @@
         - if signed_in?
           Signed in as
           = current_user.name
+          |
+          = link_to 'Logout', logout_path
         - else
           = link_to 'Login', login_path
       = render 'shared/header'
