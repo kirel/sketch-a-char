@@ -7,7 +7,7 @@
       - sym.latex_representations.each do |latex|
         %li
           %img{src:latex.image}
-          - if latex.package
+          - if latex.package.present?g
             %p.package Package: <code>\usepackage{ <kbd>#{latex.package}</kbd> }</code>
           %p.command Command: <kbd>#{latex.command}</kbd>
   - if sym.unicode_representations.any?
