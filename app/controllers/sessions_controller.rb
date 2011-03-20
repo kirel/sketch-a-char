@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
   end
   
   def fail
-    redirect_to root_path, :error => 'Hat nicht geklappt.'
+    flash[:error] = 'Hat nicht geklappt.'
+    redirect_to root_path
   end
 end
