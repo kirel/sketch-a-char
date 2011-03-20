@@ -10,16 +10,16 @@ class SessionsController < ApplicationController
     # Log the authorizing user in.
     login! @auth.user
 
-    redirect_to root_path
+    redirect_to syms_path
   end
   
   def destroy
     logout!
-    redirect_to root_path
+    redirect_to syms_path
   end
   
   def fail
     flash[:error] = 'Hat nicht geklappt.'
-    redirect_to root_path
+    redirect_to syms_path
   end
 end
