@@ -21,15 +21,16 @@ var measure = function(a, b) {
 //                 ).limit 10
                 
 var process = function(sample) {
-  return _(sample).chain().map(function(stroke){
+  var processed = _(sample).chain().map(function(stroke){
     stroke = _(stroke).map(function(point){return $V(point.slice(0,2));});
     stroke = Strokes.unduplicate(stroke);
     stroke = Strokes.smooth(stroke);
-    stroke = Strokes.fitInto(stroke, Strokes.bbFit(Strokes.boundingbox(stroke), $M([[0, 1], [0, 1]])));
     stroke = Strokes.redistribute(stroke, Strokes.length(stroke)/10);
     stroke = Strokes.unduplicate(stroke);    
     return stroke;
   }).flatten().value();
+  var refit = Strokes.fitInto(processed, Strokes.bbFit(Strokes.boundingbox(processed), $M([[0, 1], [0, 1]])));
+  return refit;
 }
 
 // TODO implement some clever logic that aborts current computation on new incoming message...
