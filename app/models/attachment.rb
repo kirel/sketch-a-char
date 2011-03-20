@@ -19,7 +19,7 @@ class Attachment < ActiveRecord::Base
   def uploaded_file=(uploaded_file)
     @uploaded_file = uploaded_file.tap do |f|
       image = Magick::Image.from_blob(f.read).first
-      image.change_geometry!('30x30>')
+      image.resize_to_fit!(30, 30)
       self.data = image.to_blob
       self.content_type = f.content_type
     end
