@@ -30,6 +30,14 @@ body, p, td, th {
   clear: both;
 }
 
+#footer {
+  background: cornsilk;
+  border-top: 1px dashed black;
+  padding: 10px 0;
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+
 h1 {
   clear: both;
 }
