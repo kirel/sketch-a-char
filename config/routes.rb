@@ -12,13 +12,15 @@ DetexifyRails::Application.routes.draw do
     resources :representations
     resources :latex_representations,   controller: :representations
     resources :unicode_representations, controller: :representations
-    resources :samples, only: [:index, :create, :destroy] do
+    resources :samples, only: [:create, :destroy] do
       member do
         post :vote_up
         post :vote_down
       end
     end
   end
+
+  match '/charts', :to => "charts#index", as: 'charts'
   
   # root
   match '/index', :to => "app#index", as: 'app'

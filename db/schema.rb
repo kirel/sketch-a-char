@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110206202852) do
+ActiveRecord::Schema.define(:version => 20110320132824) do
 
   create_table "attachments", :force => true do |t|
     t.binary   "data"
@@ -78,9 +78,11 @@ ActiveRecord::Schema.define(:version => 20110206202852) do
     t.datetime "updated_at"
     t.string   "cached_slug"
     t.boolean  "superuser"
+    t.integer  "karma_cache"
   end
 
   add_index "users", ["cached_slug"], :name => "index_users_on_cached_slug", :unique => true
+  add_index "users", ["karma_cache"], :name => "index_users_on_karma_cache"
 
   create_table "votes", :force => true do |t|
     t.boolean  "vote",          :default => false

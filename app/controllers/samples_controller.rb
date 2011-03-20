@@ -1,11 +1,7 @@
 class SamplesController < ApplicationController
   before_filter :find_sym
-  before_filter :require_current_user, :except => [:index]
+  before_filter :require_current_user
   
-  def index
-    @samples = @sym.samples.best_first.all
-  end
-
   # ajax action
   def create
     @sample = @sym.samples.build(params[:sample])

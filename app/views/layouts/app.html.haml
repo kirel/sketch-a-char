@@ -17,4 +17,9 @@
     = javascript_include_tag 'jquery.hive'
     = javascript_include_tag 'app'
   %body
-    = yield
+    #wrapper
+      = render 'shared/header'
+      = render 'shared/nav'
+      = yield
+      = render 'shared/footer'
+    = yield :javascript

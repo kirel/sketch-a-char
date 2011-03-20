@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
   def admin?
     superuser? # || Rails.env.development? # TODO allow based on karma!
   end
+  
+  def update_karma_cache!
+    self.karma_cache = self.karma
+    save! validate: false
+  end
+  
+  scope :top, order('users.karma_cache DESC')
+  
 end

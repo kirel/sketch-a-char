@@ -15,10 +15,13 @@
     = javascript_include_tag 'canvassify'
     = csrf_meta_tag
   %body
-    %small
-      - if signed_in?
-        Signed in as
-        = current_user.name
-      - else
-        = link_to 'Login', login_path
-    = yield
+    #wrapper
+      %small
+        - if signed_in?
+          Signed in as
+          = current_user.name
+        - else
+          = link_to 'Login', login_path
+      = render 'shared/nav'
+      = yield
+    = yield :javascript

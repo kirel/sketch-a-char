@@ -2,22 +2,14 @@
 
 <div class='canvas sample-canvas' data-strokes='<%= sample.data.to_json.html_safe %>'></div>
 
-<p>Quality: <span class="plusminus"><%= sample.plusminus %><span></p>
+<p>Quality: <span class="plusminus"><%= sample.plusminus_cache %><span></p>
 
 <ul>
-  <% if can? :destroy, sample %><li><%= link_to 'Destroy', [@sym, sample], remote: true, confirm: 'Are you sure?', method: :delete %></li><% end %>
+  <% if can? :destroy, sample %><li><%= link_to 'Destroy', [sample.sym, sample], remote: true, confirm: 'Are you sure?', method: :delete %></li><% end %>
   <% if signed_in? -%>
-  <li><%= link_to 'Vote up', vote_up_sym_sample_path(@sym, sample), remote: true, method: :post %></li>
-  <li><%= link_to 'Vote down', vote_down_sym_sample_path(@sym, sample), remote: true, method: :post %></li>
+  <li><%= link_to 'Vote up', vote_up_sym_sample_path(sample.sym, sample), remote: true, method: :post %></li>
+  <li><%= link_to 'Vote down', vote_down_sym_sample_path(sample.sym, sample), remote: true, method: :post %></li>
   <% end -%>
 </ul>
 
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-  var container = $('.sample-canvas');
-  $(container).each(function(){
-    var json = $(this).attr('data-strokes');
-    $.canvassify(this, {width: 400, height: 400, disabled: true}).insert(JSON.parse(json));
-  });
-</script>

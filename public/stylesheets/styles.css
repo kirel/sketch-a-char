@@ -11,8 +11,32 @@
 
 /* Basic Styles */
 
+html {
+  overflow-y: scroll;
+}
+
 body, p, td, th {
   font-family: sans-serif;
+}
+
+/*** main layout ***/
+#wrapper {
+  min-width: 420px;
+  max-width: 960px;
+  margin: auto;
+}
+
+#header, #footer {
+  clear: both;
+}
+
+h1 {
+  clear: both;
+}
+
+#app-area, #symbol-list-area {
+  float: left;
+  margin: 0 30px 30px 0;
 }
 
 /**** client styles ****/
@@ -66,7 +90,7 @@ ul.hits li.collapsed p.description {
 }
 
 ul.hits li p.score,
-.symbol .controls {
+.symbol p.footer {
   text-align: center;
   background: cornsilk;
   border-radius: 0 0 15px 15px;
@@ -98,6 +122,10 @@ ul.hits li ul li, .symbol ul li {
   margin: 10px 0;
   padding: 0 10px;
   border-top: 1px dashed whitesmoke;
+}
+
+ul.hits li.collapsed ul li {
+  border: none;
 }
 
 ul.hits li.collapsed h4 {

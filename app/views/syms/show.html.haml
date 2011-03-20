@@ -1,0 +1,29 @@
+= render @sym
+
+= link_to 'back', syms_path
+
+- if can? :create, Sample
+  %div#training-canvas.canvas
+  %a#train{href:"#"} train
+  %a#clear{href:"#"} clear
+
+  - content_for :javascript do
+    :javascript
+      var canvas = $.canvassify('#training-canvas', {width: 400, height: 400});
+      $('#clear').click(function(){canvas.clear();return false;});
+      $('#train').click(function(){
+        $.ajax({
+          url: '#{ sym_samples_path(@sym) }',
+          dataType: "script",
+          type: "POST",
+          processData: false,
+          contentType: "application/json",
+          data: JSON.stringify({sample:{data: canvas.strokes}})
+        });
+        canvas.clear();return false;
+      });
+
+%h2 Samples
+%ul.samples
+  - @sym.samples.top.each do |sample|
+    %li= render sample

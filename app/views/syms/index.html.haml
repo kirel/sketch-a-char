@@ -1,12 +1,26 @@
 %h1 Symbols
 
-= link_to 'sketch', root_path
+#symbol-list-area
 
-%ul.symbols
-  - @syms.each do |sym|
-    %li
-      = render sym
+  - if can? :manage, Sym
+    %br/
+    = link_to 'add symbol', new_sym_path
 
-- if can? :manage, Sym
-  %br/
-  = link_to 'New Sym', new_sym_path
+  %ul.symbols
+    - @syms.each do |sym|
+      %li
+        = render sym
+        .controls
+          %ul
+            %li= link_to "Samples (#{sym.samples.count})", sym
+            - if can? :manage, sym
+              %li.admin= link_to "Representations (#{sym.representations.count})", sym_representations_path(sym)
+              %li.admin= link_to 'Edit', edit_sym_path(sym)
+              %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
+  
+
+#help
+  %h2 Help
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+

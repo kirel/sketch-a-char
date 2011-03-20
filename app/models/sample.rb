@@ -8,11 +8,12 @@ class Sample < ActiveRecord::Base
   
   # TODO validate data
   
-  scope :best_first, order('samples.plusminus_cache DESC')
+  scope :top, order('samples.plusminus_cache DESC')
+  scope :flop, order('samples.plusminus_cache ASC')
   
-  def update_plusminus_cache
+  def update_plusminus_cache!
     self.plusminus_cache = self.plusminus
-    save(validate: false)
+    save! validate: false
   end
   
   def as_json options = {}

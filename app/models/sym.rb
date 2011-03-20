@@ -9,6 +9,6 @@ class Sym < ActiveRecord::Base
   
   # top samples
   def sam
-    samples.best_first.limit(5)
+    samples.top.limit(5)
   end
 end
