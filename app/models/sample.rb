@@ -11,6 +11,10 @@ class Sample < ActiveRecord::Base
   scope :top, order('samples.plusminus_cache DESC')
   scope :flop, order('samples.plusminus_cache ASC')
   
+  def symbol
+    sym
+  end
+  
   def update_plusminus_cache!
     self.plusminus_cache = self.plusminus
     save! validate: false

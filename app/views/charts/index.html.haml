@@ -1,19 +1,31 @@
 %h1 Charts
 
-%h2 Top Samples
+.charts
 
-%ol
-  - @top_samples.each do |sample|
-    %li= render sample
+  %h2 Top Samples
 
-%h2 Flop Samples
+  %ol
+    - @top_samples.each do |sample|
+      %li
+        %br
+        = render sample
 
-%ol
-  - @flop_samples.each do |sample|
-    %li= render sample
+.charts
 
-%h2 Top Users
+  %h2 Flop Samples
 
-%ol
-  - @top_users.each do |user|
-    %li= render user
+  %ol
+    - @flop_samples.each do |sample|
+      %li
+        %br
+        = render sample
+
+.charts
+
+  %h2 Top Users
+
+  %ol
+    - @top_users.each do |user|
+      %li
+        %br
+        = render user

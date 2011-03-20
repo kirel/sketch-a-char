@@ -42,9 +42,46 @@ h1 {
   clear: both;
 }
 
-#app-area, #symbol-list-area {
+#app-area, #symbol-list-area, #symbol-training-area {
   float: left;
   margin: 0 30px 30px 0;
+}
+
+/*** samples ***/
+
+#samples-area {
+  clear: both;
+}
+
+#samples-area ul.samples {
+  list-style: none;
+  padding: 0;
+}
+
+#samples-area ul.samples > li {
+  float: left;
+  width: 320px;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+
+/*** charts ***/
+
+.charts {
+  width: 320px;
+  float: left;
+  margin: 0 0 30px 0;
+}
+
+.charts ol {
+  margin: 0;
+  padding: 0;
+}
+
+.charts ol li {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
 }
 
 /**** client styles ****/
@@ -70,6 +107,7 @@ ul.hits, ul.symbols {
 
 div.symbol {
   width: 400px;
+  margin: 0 0 10px 0;
 }
 
 ul.hits li h3.name,
@@ -173,9 +211,4 @@ ul.hits li.collapsed ul.latex li img,
 ul.hits li.collapsed ul.unicode li p.char
 {
   float: none;
-}
-/* webservice styles */
-
-ul.samples > li {
-  float: left;
 }
