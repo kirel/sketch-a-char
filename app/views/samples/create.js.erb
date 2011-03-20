@@ -1,1 +1,3 @@
 $("<li><%= escape_javascript(render(@sample)) %></li>").appendTo('ul.samples').effect('highlight');
+
+setupSampleCanvas("#<%= dom_id @sample %> .sample-canvas");

@@ -80,9 +80,7 @@ var Strokes = (function () {
       var tMax = lbrt[3];
       return $M([[lbrt[0], lbrt[2]], [lbrt[1], lbrt[3]]]);
     },
-    // use fitInto(stroke, bbFit(boundingbox(stroke), targetBB)) !
-    fitInto: function(stroke, targetBB) {
-      var sourceBB = this.boundingbox(stroke);
+    fitIntoFactors: function(sourceBB, targetBB) {
       var reset = sourceBB.col(1);
       var bbWidth = width(sourceBB);
       var bbHeight = height(sourceBB);
@@ -97,10 +95,31 @@ var Strokes = (function () {
       if (bbWidth === 0) transX = transX + 1/2 * targetWidth;
       var transY = targetBB.e(2,1);
       if (bbHeight === 0) transY = transY + 1/2 * targetHeight;
-      var trans = $V([transX, transY]);
+      var trans = $V([transX, transY]); 
+      
+      return {
+        scale: scale, reset: reset, trans: trans
+      };
+    },
+    // use fitInto(stroke, bbFit(boundingbox(stroke), targetBB)) !
+    fitInto: function(stroke, targetBB) {
+      var sourceBB = this.boundingbox(stroke);
+      
+      var factors = this.fitIntoFactors(sourceBB, targetBB)
       
       return _(stroke).map(function(p){
-        return scale.multiply(p.subtract(reset)).add(trans);
+        return factors.scale.multiply(p.subtract(factors.reset)).add(factors.trans);
+      });
+    },
+    multiFitInto: function(strokes, targetBB) {
+      var sourceBB = this.boundingbox(_(strokes).flatten());
+      
+      var factors = this.fitIntoFactors(sourceBB, targetBB)
+      
+      return _(strokes).map(function(stroke){        
+        return _(stroke).map(function(p){
+          return factors.scale.multiply(p.subtract(factors.reset)).add(factors.trans);
+        });
       });
     },
     bbFit: function(sourceBB, targetBB) {

@@ -69,7 +69,6 @@ $(function(){
     
     render: function() {
       var html = $('#hits-template').tmpl(this.collection.toJSON());
-      console.log(this.collection.toJSON());
       $(this.el).html(html).find('> li').addClass('collapsed').click(function() { $(this).removeClass('collapsed'); });
       return this;
     }
@@ -86,7 +85,6 @@ $(function(){
   // get app data and initialize hive
   // TODO App not fully initialized until the next request is done.
   $.getJSON('index.json', function(app_data) {
-    console.log('App Data:', app_data);
     
     var symbol_map = _(app_data).inject(function(acc, sym) { return _(acc).extend(_({}).tap(function(obj){ obj[sym.id] = sym }))}, {});
   
@@ -101,7 +99,6 @@ $(function(){
         }
         else if (data.result) {
           var h = _(data.result).map(function(score, id) { return new Hit({score: score, symbol: symbol_map[id]}); });
-          console.log(h);
           hits.refresh(h);
         }
       }
