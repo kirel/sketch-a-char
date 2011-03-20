@@ -191,10 +191,11 @@ ul.hits li.collapsed ul li p
   display: inline;  
 }
 
+ul.hits li ul.latex li img,
 ul.hits li ul.unicode li p.char,
+.symbol ul.latex li img,
 .symbol ul.unicode li p.char
 {
-  height: 30px;
   padding: 5px;
   margin: 0 10px 0 0;
   vertical-align: middle;
