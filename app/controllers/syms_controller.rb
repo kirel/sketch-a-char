@@ -26,7 +26,7 @@ class SymsController < ApplicationController
     @sym = Sym.new(params[:sym])
 
     if @sym.save
-      redirect_to(@sym, :notice => 'Sym was successfully created.')
+      redirect_to(@sym, :notice => 'Symbol was successfully created. Please add representions and training data!')
     else
       render :action => "new"
     end
@@ -36,7 +36,7 @@ class SymsController < ApplicationController
     @sym = Sym.find(params[:id])
 
     if @sym.update_attributes(params[:sym])
-      redirect_to(@sym, :notice => 'Sym was successfully updated.')
+      redirect_to([:edit, @sym], :notice => 'Symbol was successfully updated.')
     else
       render :action => "edit"
     end
@@ -46,6 +46,6 @@ class SymsController < ApplicationController
     @sym = Sym.find(params[:id])
     @sym.destroy
 
-    redirect_to(syms_url)
+    redirect_to(syms_url, :notice => 'Symbol removed.')
   end
 end

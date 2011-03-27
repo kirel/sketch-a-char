@@ -1,5 +1,7 @@
 %h1 Symbols
 
+= flash_message
+
 #symbol-list-area
 
   - if can? :manage, Sym
@@ -15,7 +17,7 @@
             %li= link_to "Samples (#{sym.samples.count})", sym
             - if can? :manage, sym
               %li.admin= link_to "Representations (#{sym.representations.count})", sym_representations_path(sym)
-              %li.admin= link_to 'Edit', edit_sym_path(sym)
+              %li.admin= link_to 'Edit symbol', edit_sym_path(sym)
               %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
   
 

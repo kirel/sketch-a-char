@@ -1,6 +1,12 @@
 #symbol-training-area
   #symbol-area
+    = flash_message
     = render @sym
+    - if can? :manage, @sym
+      .controls
+        %ul
+          %li.admin= link_to "Representations (#{@sym.representations.count})", sym_representations_path(@sym)
+          %li.admin= link_to 'Edit symbol', edit_sym_path(@sym)    
 
   - if can? :create, Sample
     #training-area

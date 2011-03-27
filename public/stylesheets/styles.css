@@ -42,6 +42,18 @@ h1 {
   clear: both;
 }
 
+.flash {
+  margin: 10px 0;
+}
+
+.flash.notice {
+  color: green;
+}
+
+.flash.error {
+  color: red;
+}
+
 #app-area, #symbol-list-area, #symbol-training-area {
   float: left;
   margin: 0 30px 30px 0;

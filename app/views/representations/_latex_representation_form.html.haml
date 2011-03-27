@@ -1,5 +1,5 @@
-= f.inputs :package, :command
+= f.input :package
+= f.input :command
 = f.semantic_fields_for :attachment do |a|
   = a.input :uploaded_file, as: :file
-= f.buttons do
-  = f.commit_button
+= f.commit_button

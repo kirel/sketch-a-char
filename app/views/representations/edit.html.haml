@@ -1,5 +1,9 @@
 %h1 Editing representation
 
+= flash_message
+
+= render @representation
+
 - if @latex_representation
   = semantic_form_for([@sym, @latex_representation], html: {multipart: true}) do |f|
     = f.semantic_errors
@@ -10,6 +14,4 @@
     = f.semantic_errors
     = render 'unicode_representation_form', :f => f
 
-= link_to 'Show', [@sym, @latex_representation || @unicode_representation]
-|
 = link_to 'Back', sym_representations_path(@sym)

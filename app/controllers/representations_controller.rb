@@ -54,7 +54,7 @@ class RepresentationsController < ApplicationController
 
     respond_to do |format|
       if @representation.update_attributes(representation_params)
-        format.html { redirect_to([@sym, @representation], :notice => 'Representation was successfully updated.') }
+        format.html { redirect_to([:edit, @sym, @representation], :notice => 'Representation was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end
