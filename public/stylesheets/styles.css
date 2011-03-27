@@ -59,6 +59,23 @@ h1 {
   margin: 0 30px 30px 0;
 }
 
+ul.signin li.twitter a {
+  background: url('../images/social_signin_buttons_icons/twitter_signin.png') no-repeat left top;
+  display: block;
+  width: 150px;
+  height: 0px;
+  overflow: hidden;
+  padding-top: 24px;
+}
+
+ul.signin li.twitter a:hover {
+  background-position: left -24px;
+}
+
+ul.signin li.twitter a:active {
+  background-position: left -48px;
+}
+
 /*** samples ***/
 
 #samples-area {
