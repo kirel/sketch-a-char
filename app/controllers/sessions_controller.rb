@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # Log the authorizing user in.
     login! @auth.user
 
-    redirect_to syms_path
+    redirect_to request.env['omniauth.origin'] || syms_path
   end
   
   def destroy
