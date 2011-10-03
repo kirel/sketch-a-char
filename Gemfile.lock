@@ -36,6 +36,7 @@ GEM
     babosa (0.3.5)
     builder (2.1.2)
     cancan (1.6.5)
+    daemons (1.0.10)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -53,6 +54,7 @@ GEM
       i18n (>= 0.4.0)
     friendly_id (3.2.1.1)
       babosa (~> 0.3.0)
+    gem_plugin (0.2.3)
     haml (3.1.2)
     i18n (0.5.0)
     jquery-rails (1.0.9)
@@ -64,6 +66,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
@@ -173,6 +178,7 @@ DEPENDENCIES
   friendly_id (~> 3.2)
   haml
   jquery-rails
+  mongrel
   omniauth
   rack-offline
   rails (= 3.0.7)
