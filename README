@@ -3,3 +3,13 @@
     bundle
     rake db:migrate
     rails server
+
+TODO
+
+- upgrade to Rails 3.1
+- use foreman and upgrade to cedar
+- use guard-rspec
+- use coffee-script
+- use ender.js (http://ender.no.de/)
+- build node.js server for serverside processing (using the same code as the browser)
+- use dragonfly for image processing?
