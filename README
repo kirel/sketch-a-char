@@ -6,8 +6,6 @@
 
 TODO
 
-- upgrade to Rails 3.1
-- use foreman and upgrade to cedar
 - use guard-rspec
 - use coffee-script
 - use ender.js (http://ender.no.de/)
