@@ -1,4 +1,4 @@
-== Detexify 3
+== Sketch-A-Char (Detexify 3)
 
     bundle
     rake db:migrate

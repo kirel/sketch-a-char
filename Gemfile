@@ -1,22 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0'
 gem 'thin'
 
-gem 'jquery-rails'
+gem "jquery-rails"
 
-gem 'omniauth'
-gem "friendly_id", "~> 3.2"
-gem 'thumbs_up'
-gem 'haml'
-gem 'formtastic', '~> 1.1.0'
-gem "will_paginate", "~> 3.0.pre2"
+gem "omniauth"
+gem "friendly_id"
+gem "thumbs_up"
+gem "haml-rails"
+gem 'formtastic', '~> 2.0.0'
+gem "kaminari"
 gem "cancan"
 gem "rmagick", :require => 'RMagick'
 
-gem "autotest"
-
-gem 'rack-offline'
+gem "rack-offline"
 
 group :production do
   gem 'pg'
@@ -30,4 +28,10 @@ end
 group :test do
   gem "factory_girl_rails"
   gem "syntax"
+end
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
 end

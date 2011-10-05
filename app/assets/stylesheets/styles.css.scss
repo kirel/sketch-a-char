@@ -1,12 +1,3 @@
-/* @override 
-	http://localhost:3000/stylesheets/styles.css?1299877234
-	http://localhost:3000/stylesheets/styles.css?1299878394
-	http://localhost:3000/stylesheets/styles.css?1299879668
-	http://localhost:3000/stylesheets/styles.css?1299880941
-	http://localhost:3000/stylesheets/styles.css?1299881685
-	http://localhost:3000/stylesheets/styles.css?1299882049
-*/
-
 /* cornsilk, whitesmoke, royalblue */
 
 /* Basic Styles */
@@ -60,7 +51,7 @@ h1 {
 }
 
 ul.signin li.twitter a {
-  background: url('../images/social_signin_buttons_icons/twitter_signin.png') no-repeat left top;
+  background: image-url('social_signin_buttons_icons/twitter_signin.png') no-repeat left top;
   display: block;
   width: 150px;
   height: 0px;
@@ -217,7 +208,7 @@ ul.hits li.collapsed ul,
 ul.hits li.collapsed ul li,
 ul.hits li.collapsed ul li p
 {
-  display: inline;  
+  display: inline;
 }
 
 ul.hits li ul.latex li img,
