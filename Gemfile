@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
-gem 'mongrel'
+gem 'thin'
 
 gem 'jquery-rails'
 
@@ -17,6 +17,10 @@ gem "rmagick", :require => 'RMagick'
 gem "autotest"
 
 gem 'rack-offline'
+
+group :production do
+  gem 'pg'
+end
 
 group :test, :development do
   gem "rspec-rails"
