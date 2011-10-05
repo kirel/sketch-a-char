@@ -1,2 +1,6 @@
 %ul.signin
-  %li.twitter= link_to 'Login with Twitter', '/auth/twitter'
+  %li.openid= link_to 'Login with OpenID', '/auth/open_id'
+  - if ENV['TWITTER_APP_ID']
+    %li.twitter= link_to 'Login with Twitter', '/auth/twitter'
+  - if ENV['FB_APP_ID']
+    %li.facebook= link_to 'Login with Facebook', '/auth/facebook'
