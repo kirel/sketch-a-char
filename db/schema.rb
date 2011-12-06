@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205234148) do
+ActiveRecord::Schema.define(:version => 20111206220610) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20111205234148) do
   create_table "representations", :force => true do |t|
     t.string   "package"
     t.string   "command"
-    t.string   "codepoint"
+    t.integer  "codepoint",  :limit => 255
     t.string   "type"
     t.integer  "sym_id"
     t.datetime "created_at"
