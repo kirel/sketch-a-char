@@ -16,6 +16,6 @@
       - sym.unicode_representations.each do |unicode|
         %li
           %p.char <kbd>#{unicode.unicode}</kbd>
-          %p.codepoint Codepoint: <code>U+#{unicode.codepoint}</code>
+          %p.codepoint <code>#{unicode.hex_codepoint}</code>
   %p.footer
     &nbsp;

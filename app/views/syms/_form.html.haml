@@ -1,6 +1,5 @@
-= semantic_form_for(@sym) do |f|
-  = f.semantic_errors
-
+= simple_form_for(@sym, validate: true) do |f|
+  = f.error_notification
   = f.input :name
   = f.input :description, as: :text
-  = f.commit_button
+  = f.button :submit

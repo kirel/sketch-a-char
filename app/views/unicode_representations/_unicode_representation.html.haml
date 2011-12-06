@@ -1,2 +1,3 @@
 .unicode_representation
-  = unicode_representation.to_s
+  %p.char <kbd>#{unicode_representation.unicode}</kbd>
+  %p.codepoint <code>#{unicode_representation.hex_codepoint}</code>

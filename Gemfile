@@ -14,7 +14,8 @@ gem 'omniauth-facebook'
 gem "friendly_id"
 gem "thumbs_up"
 gem "haml-rails"
-gem 'formtastic', '~> 2.0.0'
+gem 'simple_form'
+gem "client_side_validations"
 gem "kaminari"
 gem "cancan"
 

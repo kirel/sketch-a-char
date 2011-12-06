@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require rails
+//= require rails.validations
 //= require underscore-min
 //= require underscore-mixins
 //= require sylvester
