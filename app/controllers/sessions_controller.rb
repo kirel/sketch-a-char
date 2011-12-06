@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_filter :authenticate
   def create
     auth = request.env['omniauth.auth']
     unless @auth = Authorization.find_from_hash(auth)
@@ -12,12 +11,12 @@ class SessionsController < ApplicationController
 
     redirect_to request.env['omniauth.origin'] || syms_path
   end
-  
+
   def destroy
     logout!
     redirect_to syms_path
   end
-  
+
   def fail
     flash[:error] = 'Hat nicht geklappt.'
     redirect_to syms_path
