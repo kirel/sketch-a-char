@@ -6,7 +6,7 @@ class Attachment < ActiveRecord::Base
   validates_property :format, :of => :image, :in => [:jpeg, :png, :gif]
 
   def data_uri
-    "data:#{image.mime_type};base64,#{ActiveSupport::Base64.encode64(image.data)}"
+    Rails.cache.fetch("data_uri_#{id}_#{updated_at}") { "data:image/jpeg;base64,#{ActiveSupport::Base64.encode64(image.thumb('100x100').encode(:jpg).data)}" }
   end
 
 end
