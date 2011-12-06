@@ -22,6 +22,7 @@ gem "rack-offline"
 
 group :production do
   gem 'pg'
+  gem 'fog'
 end
 
 group :test, :development do
