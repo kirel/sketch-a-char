@@ -1,32 +1,12 @@
 class Attachment < ActiveRecord::Base
-  extend ActionView::Helpers::NumberHelper
   belongs_to :attachable, polymorphic: true
-  # attr_accessible :uploaded_file
-  
-  validates_presence_of :data
-  validates_each :uploaded_file do |record, attr, val|
-    if val
-      record.errors[:uploaded_file] << "Only png images." unless val.content_type == 'image/png'
-      size = 32.kilobytes
-      record.errors[:uploaded_file] << "Must be smaller than #{number_to_human_size(size)}" unless val.size < size
-    end
-  end
-  
+
+  image_accessor :image
+  validates_presence_of :image
+  validates_property :format, :of => :image, :in => [:jpeg, :png, :gif]
+
   def data_uri
-    "data:#{content_type};base64,#{ActiveSupport::Base64.encode64(data)}"
+    "data:#{image.mime_type};base64,#{ActiveSupport::Base64.encode64(image.data)}"
   end
-  
-  def uploaded_file=(uploaded_file)
-    @uploaded_file = uploaded_file.tap do |f|
-      image = Magick::Image.from_blob(f.read).first
-      image.resize_to_fit!(30, 30)
-      self.data = image.to_blob
-      self.content_type = f.content_type
-    end
-  end
-  
-  def uploaded_file
-    @uploaded_file
-  end
-  
+
 end

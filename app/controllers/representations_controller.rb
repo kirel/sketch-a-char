@@ -42,7 +42,7 @@ class RepresentationsController < ApplicationController
 
     respond_to do |format|
       if @representation.save
-        format.html { redirect_to([@sym, @representation], :notice => 'Representation was successfully created.') }
+        format.html { redirect_to([:edit, @sym, @representation], :notice => 'Representation was successfully created.') }
       else
         format.html { render :action => "new" }
       end

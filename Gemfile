@@ -1,18 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.3'
 gem 'thin'
 
 gem "jquery-rails"
 
-gem "omniauth"
+gem "omniauth-openid"
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 gem "friendly_id"
 gem "thumbs_up"
 gem "haml-rails"
 gem 'formtastic', '~> 2.0.0'
 gem "kaminari"
 gem "cancan"
-gem "rmagick", :require => 'RMagick'
+
+gem 'dragonfly', '~>0.9.8'
 
 gem "rack-offline"
 
@@ -23,6 +27,8 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem 'sqlite3-ruby'
+  gem 'heroku'
+  gem 'rack-cache', :require => 'rack/cache'
 end
 
 group :test do
