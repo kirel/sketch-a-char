@@ -228,6 +228,10 @@ ul.hits li.collapsed ul li p
   display: inline;
 }
 
+ul.hits li ul li, p.score {
+  clear: left;
+}
+
 ul.hits li ul.latex li img,
 ul.hits li ul.unicode li p.char,
 .symbol ul.latex li img,
