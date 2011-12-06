@@ -1,7 +1,7 @@
 class SamplesController < ApplicationController
-  before_filter :find_sym
-  before_filter :require_current_user
-  
+  load_and_authorize_resource :sym
+  load_and_authorize_resource through: :sym
+
   # ajax action
   def create
     @sample = @sym.samples.build(params[:sample])
@@ -24,21 +24,16 @@ class SamplesController < ApplicationController
       format.js # destry.js.erb
     end
   end
-  
+
   # ajax actions
   def vote_up
     @sample = @sym.samples.find(params[:id])
     current_user.vote_exclusively_for(@sample)
   end
-  
+
   def vote_down
     @sample = @sym.samples.find(params[:id])
     current_user.vote_exclusively_against(@sample)
   end
-  
-  protected
-  
-  def find_sym
-    @sym = Sym.find(params[:sym_id])
-  end
+
 end

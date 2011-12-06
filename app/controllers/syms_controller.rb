@@ -1,6 +1,6 @@
 class SymsController < ApplicationController
-  before_filter :require_admin, only: [:new, :create, :edit, :update, :destroy]
-  
+  load_and_authorize_resource
+
   def index
     @syms = Sym.all
 
