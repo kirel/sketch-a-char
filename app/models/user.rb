@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_karma :samples, as: :submitter
 
   def self.create_from_hash!(hash)
-    create!(:name => hash['user_info']['name'])
+    create!(:name => hash['info']['name'])
   end
 
   def identity?
