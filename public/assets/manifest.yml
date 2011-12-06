@@ -1012,6 +1012,7 @@ social_signin_buttons_icons/openid_signin.png: social_signin_buttons_icons/openi
 social_signin_buttons_icons/twitter_16.png: social_signin_buttons_icons/twitter_16-b668de41548e99afc2194aace3c54f5e.png
 social_signin_buttons_icons/twitter_32.png: social_signin_buttons_icons/twitter_32-63a51eba5a9297893f2947821b397fff.png
 social_signin_buttons_icons/twitter_signin.png: social_signin_buttons_icons/twitter_signin-d2ce17d5d524a69451f2ad54282de041.png
+app.js: app-b2d6cb109585e1a67ba407d6abb2a4de.js
 application.js: application-178edff0b16e90571cffb3d52cb081a8.js
 classifier.worker.js: classifier.worker-59f546622fa12c6c6836853b1f7f918a.js
 application.css: application-05b18b47500b6618963b6162b554f887.css
