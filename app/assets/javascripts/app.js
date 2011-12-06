@@ -104,7 +104,7 @@ $(function(){
 
     // worker
     $.Hive.create({
-      worker: 'javascripts/classifier.worker.js',
+      worker: 'assets/classifier.worker.js',
       receive: function (data) {
         if (data.message) {
           console.group('RECEIVED MESSAGE - WORKER: #' + data.WORKER_ID);
