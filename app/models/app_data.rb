@@ -4,7 +4,7 @@ module AppData
     Sym.all.to_json :except => [:cached_slug, :created_at, :updated_at],
       :methods => :sam,
       :include => {
-        unicode_representations: { only: :codepoint, methods: :unicode },
+        unicode_representations: { only: {}, methods: [:unicode, :hex_codepoint] },
         latex_representations: { only: [:command, :package], methods: :image },
       }
   end

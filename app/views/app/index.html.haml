@@ -37,7 +37,7 @@
       {{each symbol.unicode_representations}}
       %li
         %p.char <kbd>${unicode}</kbd>
-        %p.codepoint Codepoint: <code>U+${codepoint}</code>
+        %p.codepoint <code>${hex_codepoint}</code>
       {{/each}}
     {{/if}}
     %p.score

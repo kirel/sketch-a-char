@@ -8,10 +8,8 @@ class UnicodeRepresentation < Representation
     self[:codepoint] = case string
       when /^[uU]\+([0-9a-fA-F]{4,5}|10[0-9a-fA-F]{4})$/
         $1.to_i(16)
-      when /^\d+$/
-        string
       else
-        self.unicode = string
+        string.unpack("U").first
       end
   end
 
