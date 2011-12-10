@@ -1,15 +1,11 @@
 class ChangeCodepointColumn < ActiveRecord::Migration
   def up
-    change_table(:representations) do |t|
-      t.remove :codepoint
-      t.add :codepoint, :integer
-    end
+    remove_column :representations, :codepoint
+    add_column :representations, :codepoint, :integer
   end
 
   def down
-    change_table(:representations) do |t|
-      t.remove :codepoint
-      t.add :codepoint, :string
-    end
+    remove_column :representations, :codepoint
+    add_column :representations, :codepoint, :string
   end
 end
