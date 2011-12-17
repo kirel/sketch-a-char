@@ -79,6 +79,9 @@ GEM
     formatador (0.2.1)
     friendly_id (3.3.0.1)
       babosa (~> 0.3.0)
+    glow (0.0.8)
+      jquery-rails
+      rails (>= 3.0.0, < 3.2.0)
     haml (3.1.4)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -230,6 +233,7 @@ DEPENDENCIES
   fog
   foreman
   friendly_id
+  glow
   haml-rails
   heroku
   jquery-rails

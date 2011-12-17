@@ -10,6 +10,7 @@ class SamplesController < ApplicationController
     if @sample.save
       # create.js
     else
+      flash[:error] = @sample.errors.full_messages.to_sentence
       head :unprocessable_entity
     end
   end

@@ -6,6 +6,7 @@ gem 'foreman'
 gem "airbrake"
 
 gem "jquery-rails"
+gem 'glow'
 
 gem "omniauth-openid"
 gem 'omniauth-twitter'

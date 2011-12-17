@@ -3,6 +3,8 @@
 //= require jquery-ui
 //= require rails
 //= require rails.validations
+//= require glow
+//= require humane
 //= require underscore-min
 //= require underscore-mixins
 //= require sylvester
@@ -42,5 +44,9 @@ var setupSampleCanvas = function(jquery) {
 }
 
 $(function(){
+  humane.notice = humane.info;
+  $(document).bind('glow:flash', function(evt, flash) {
+    humane[flash.type](flash.message);
+  });
   setupSampleCanvas('.sample-canvas');
 });
