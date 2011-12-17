@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    superuser? || Rails.env.development? # TODO allow based on karma!
+    superuser? # TODO allow based on karma!
   end
 
   def update_karma_cache!

@@ -4,9 +4,9 @@ class LatexRepresentation < Representation
   has_one :attachment, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachment
   validates_presence_of :attachment
-  
+
   def image
     attachment.data_uri
   end
-  
+
 end

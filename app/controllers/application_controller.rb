@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   def current_user
     if id = session[:user_id]
       @current_user ||= User.find_by_id(id)
+    elsif Rails.env.development?
+      User.find_or_create_by_name('Dev User') { |u| u.superuser = true }
     end
   end
 
