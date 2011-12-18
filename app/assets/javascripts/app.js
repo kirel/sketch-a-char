@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require jquery-ui
 //= require underscore-min
 //= require underscore-mixins

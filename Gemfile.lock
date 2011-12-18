@@ -219,6 +219,9 @@ GEM
     uglifier (1.1.0)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    zurb-foundation (2.1.3.1)
+      jquery-rails (~> 1.0)
+      rails (~> 3.1.0)
 
 PLATFORMS
   ruby
@@ -253,3 +256,4 @@ DEPENDENCIES
   thin
   thumbs_up
   uglifier
+  zurb-foundation
