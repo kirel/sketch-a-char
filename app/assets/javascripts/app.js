@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require rails
 //= require underscore-min
 //= require underscore-mixins
 //= require backbone-min

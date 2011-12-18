@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require rails
 //= require rails.validations
 //= require glow
 //= require humane
@@ -12,6 +11,8 @@
 //= require backbone-min
 //= require raphael-min
 //= require canvassify
+//
+//= require_self
 
 var processSample = function(sample, width, height) {
 
