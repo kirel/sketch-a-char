@@ -8,6 +8,7 @@ class SamplesController < ApplicationController
     @sample.submitter = current_user
 
     if @sample.save
+      flash[:success] = 'Saved.'
       # create.js
     else
       flash[:error] = @sample.errors.full_messages.to_sentence
