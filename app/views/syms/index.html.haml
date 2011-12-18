@@ -8,6 +8,8 @@
     %br/
     = link_to 'add symbol', new_sym_path
 
+  = paginate @syms
+  
   %ul.symbols
     - @syms.each do |sym|
       %li
@@ -19,6 +21,8 @@
               %li.admin= link_to "Representations (#{sym.representations.count})", sym_representations_path(sym)
               %li.admin= link_to 'Edit symbol', edit_sym_path(sym)
               %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
+
+  = paginate @syms
   
 
 #help
