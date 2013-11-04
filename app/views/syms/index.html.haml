@@ -1,32 +1,33 @@
-%h1 Symbols
+%h1.row Symbols
 
 = flash_message
 
-#symbol-list-area
+.row
+  #symbol-list-area.six.columns
 
-  - if can? :manage, Sym
-    %br/
-    = link_to 'add symbol', new_sym_path
+    - if can? :manage, Sym
+      %br/
+      = link_to 'add symbol', new_sym_path
 
-  = paginate @syms
-  
-  %ul.symbols
-    - @syms.each do |sym|
-      %li
-        = render sym
-        .controls
-          %ul
-            %li= link_to "Samples (#{sym.samples.count})", sym
-            - if can? :manage, sym
-              %li.admin= link_to "Representations (#{sym.representations.count})", sym_representations_path(sym)
-              %li.admin= link_to 'Edit symbol', edit_sym_path(sym)
-              %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
+    = paginate @syms
 
-  = paginate @syms
-  
+    %ul.symbols
+      - @syms.each do |sym|
+        %li
+          = render sym
+          .controls
+            %ul
+              %li= link_to "Samples (#{sym.samples.count})", sym
+              - if can? :manage, sym
+                %li.admin= link_to "Representations (#{sym.representations.count})", sym_representations_path(sym)
+                %li.admin= link_to 'Edit symbol', edit_sym_path(sym)
+                %li.admin= link_to 'Destroy', sym, :confirm => 'Are you sure?', :method => :delete
 
-#help
-  %h2 Help
-  %p
-    This is the list of symbols. For good recognition results each symbol needs training data. You can see the samples for each symbol by clicking on the corresponding link.
+    = paginate @syms
+
+
+  #help.six.columns
+    %h2 Help
+    %p
+      This is the list of symbols. For good recognition results each symbol needs training data. You can see the samples for each symbol by clicking on the corresponding link.
 

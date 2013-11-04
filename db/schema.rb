@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206220610) do
+ActiveRecord::Schema.define(:version => 20131104211629) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -67,22 +67,22 @@ ActiveRecord::Schema.define(:version => 20111206220610) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug"
+    t.string   "slug"
   end
 
-  add_index "syms", ["cached_slug"], :name => "index_syms_on_cached_slug", :unique => true
+  add_index "syms", ["slug"], :name => "index_syms_on_cached_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug"
+    t.string   "slug"
     t.boolean  "superuser"
     t.integer  "karma_cache", :default => 0
   end
 
-  add_index "users", ["cached_slug"], :name => "index_users_on_cached_slug", :unique => true
   add_index "users", ["karma_cache"], :name => "index_users_on_karma_cache"
+  add_index "users", ["slug"], :name => "index_users_on_cached_slug", :unique => true
 
   create_table "votes", :force => true do |t|
     t.boolean  "vote",          :default => false

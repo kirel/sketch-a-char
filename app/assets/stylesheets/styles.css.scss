@@ -11,11 +11,6 @@ body, p, td, th {
 }
 
 /*** main layout ***/
-#wrapper {
-  min-width: 420px;
-  max-width: 960px;
-  margin: auto;
-}
 
 #header, #footer {
   clear: both;
@@ -46,8 +41,6 @@ h1 {
 }
 
 #app-area, #symbol-list-area, #symbol-training-area {
-  float: left;
-  margin: 0 30px 30px 0;
 }
 
 ul.signin li.openid a {
@@ -66,7 +59,6 @@ ul.signin li.openid a,
 ul.signin li.twitter a,
 ul.signin li.facebook a {
   display: block;
-  width: 150px;
   height: 0px;
   overflow: hidden;
   padding-top: 24px;
@@ -97,7 +89,6 @@ ul.signin li.facebook a:active {
 
 #samples-area ul.samples > li {
   float: left;
-  width: 320px;
   margin: 0 0 30px 0;
   padding: 0;
 }
@@ -105,7 +96,6 @@ ul.signin li.facebook a:active {
 /*** charts ***/
 
 .charts {
-  width: 320px;
   float: left;
   margin: 0 0 30px 0;
 }
@@ -139,11 +129,9 @@ ul.hits, ul.symbols {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 400px;
 }
 
 div.symbol {
-  width: 400px;
   margin: 0 0 10px 0;
 }
 

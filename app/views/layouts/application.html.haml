@@ -3,21 +3,32 @@
   %head
     %title Sketch-A-Char
     %link{rel: "icon", href: "/favicon.png", type: "image/png"}
+    %meta{name:"viewport", content: "width=device-width, initial-scale=1.0"}
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
-    #wrapper
-      %small
-        - if signed_in?
-          Signed in as
-          = current_user.name
-          |
-          = link_to 'Logout', logout_path
-        - else
-          = link_to 'Login', login_path
-      = render 'shared/header'
-      = render 'shared/nav'
-      = yield
-      = render 'shared/footer'
+    #container
+      .row
+        .one
+          %small
+            - if signed_in?
+              Signed in as
+              = current_user.name
+              |
+              = link_to 'Logout', logout_path
+            - else
+              = link_to 'Login', login_path
+      .row
+        .one
+          = render 'shared/header'
+      .row
+        .one
+          = render 'shared/nav'
+      .row
+        .one
+          = yield
+      .row
+        .one
+          = render 'shared/footer'
     = yield :javascript

@@ -1,10 +1,10 @@
 %h1 New representation
 
-= simple_form_for([@sym, @latex_representation], validate: true) do |f|
+= simple_form_for([@sym, @latex_representation]) do |f|
   = f.error_notification
   = render 'latex_representation_form', :f => f
 
-= simple_form_for([@sym, @unicode_representation], validate: true) do |f|
+= simple_form_for([@sym, @unicode_representation]) do |f|
   = f.error_notification
   = render 'unicode_representation_form', :f => f
 

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-DetexifyRails::Application.config.secret_token = 'd9aeb40284d37047a77086d62bbb703f08b0003881a07b035b73e14d85def51b1019340f04561e3421d1aea0fb099609c1df8b8557d236e754e07ea585e2ef46'
+DetexifyRails::Application.config.secret_token = '8ed0a28d06c83143e4d9736e4623af716807bf76571f9e128cc1cc9ed584b026329d07513809f5654b6ebbc2b05c5f25231b6cd834deb03eb68175a1b4421d71'

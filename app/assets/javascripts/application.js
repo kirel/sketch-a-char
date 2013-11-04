@@ -1,8 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require jquery-ui
-//= require rails.validations
+//= require jquery.ui.all
 //= require glow
 //= require humane
 //= require underscore-min

@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   has_many :authorizations, dependent: :destroy
   validates_presence_of :name
   attr_accessible :name
-  has_friendly_id :name, :use_slug => true
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
   acts_as_voter
   has_karma :samples, as: :submitter
 

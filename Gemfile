@@ -1,22 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem "rails", "~> 3.2.15"
 gem 'thin'
 gem 'foreman'
 gem "airbrake"
 
 gem "jquery-rails"
+gem 'jquery-ui-rails'
 gem 'glow'
 
 gem "omniauth-openid"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-gem "friendly_id"
+gem "friendly_id", "~> 4.0.10"
 gem "thumbs_up"
 gem "haml-rails"
 gem 'simple_form'
-gem "client_side_validations"
 gem "kaminari"
 gem "cancan"
 
@@ -36,14 +36,20 @@ group :test, :development do
   gem 'rack-cache', :require => 'rack/cache'
 end
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
 group :test do
   gem "factory_girl_rails"
   gem "syntax"
 end
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'zurb-foundation'
   gem 'uglifier'
+  gem 'sass-rails', "  ~> 3.2.0"
+  gem 'coffee-rails', "~> 3.2.0"
+  gem 'compass-rails'
+  gem 'zurb-foundation', '~> 4.3.2'
 end
