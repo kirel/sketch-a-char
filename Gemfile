@@ -32,7 +32,6 @@ end
 group :test, :development do
   gem "rspec-rails"
   gem 'sqlite3-ruby'
-  gem 'heroku'
   gem 'rack-cache', :require => 'rack/cache'
 end
 
