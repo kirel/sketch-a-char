@@ -31,6 +31,8 @@ end
 
 group :test, :development do
   gem "rspec-rails"
+  gem 'guard-konacha'
+  gem 'capybara-webkit'
   gem 'sqlite3-ruby'
   gem 'rack-cache', :require => 'rack/cache'
 end
