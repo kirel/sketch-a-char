@@ -1,10 +1,10 @@
-== Sketch-A-Char (Detexify 3)
+== Sketch-A-Char (Detexify 3)=
 
     bundle
     rake db:migrate
     rails server
 
-TODO
+TODO-
 
 - use guard-rspec
 - use coffee-script
